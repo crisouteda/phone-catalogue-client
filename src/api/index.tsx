@@ -1,1 +1,1 @@
-export * from "./getPhones";
+export * from "./endpoints";

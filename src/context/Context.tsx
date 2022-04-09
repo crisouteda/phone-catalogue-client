@@ -1,18 +1,25 @@
-import React, { useReducer, useMemo } from "react";
-import { GET_PHONES, GET_PHONES_SUCCESS, GET_PHONES_FAIL } from "./actionTypes";
+import React, { useReducer, useMemo, useEffect } from "react";
+import {
+  GET_PHONES,
+  GET_PHONES_SUCCESS,
+  GET_PHONES_FAIL,
+  GET_PHONE,
+  GET_PHONE_SUCCESS,
+  GET_PHONE_FAIL,
+} from "./actionTypes";
 import Actions, { iActions } from "./ContextActions";
 
 // Interface for the payload
-export interface IPayload {
-  phones: any;
-  error: any;
-}
+// export interface IPayload {}
 
 // Interface for the state
 interface iState {
   phones: Object[];
   phonesLoading: boolean;
   phonesError: any;
+  phone?: { id: string };
+  phoneLoading: boolean;
+  phoneError: any;
 }
 
 // Interface for the actions
@@ -24,9 +31,12 @@ const initialState: iState = {
   phones: [],
   phonesLoading: false,
   phonesError: null,
+  phone: undefined,
+  phoneLoading: false,
+  phoneError: null,
 };
 
-function reducer(state: iState, action: { type: string; payload: IPayload }) {
+function reducer(state: iState, action: { type: string; payload: any }) {
   switch (action.type) {
     case GET_PHONES:
       return {
@@ -37,14 +47,32 @@ function reducer(state: iState, action: { type: string; payload: IPayload }) {
     case GET_PHONES_SUCCESS:
       return {
         ...state,
-        phones: action.payload.phones,
+        phones: action.payload,
         phonesLoading: false,
       };
     case GET_PHONES_FAIL:
       return {
         ...state,
         phonesLoading: false,
-        phonesError: action.payload.error,
+        phonesError: action.payload,
+      };
+    case GET_PHONE:
+      return {
+        ...state,
+        phonesLoading: true,
+        phonesErorr: null,
+      };
+    case GET_PHONE_SUCCESS:
+      return {
+        ...state,
+        phones: action.payload,
+        phonesLoading: false,
+      };
+    case GET_PHONE_FAIL:
+      return {
+        ...state,
+        phonesLoading: false,
+        phonesError: action.payload,
       };
     default:
       return state;
