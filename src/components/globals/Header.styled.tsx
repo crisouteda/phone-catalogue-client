@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-// interface CustomTextProps {
-//   readonly bold: boolean;
-//   readonly large: boolean;
-//   readonly secondary: boolean;
-// }
-
 export const StyledHeader = styled.div`
   background: ${(props) => props.theme.primary};
   height: 120px;
