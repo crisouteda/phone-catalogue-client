@@ -3,11 +3,11 @@ import { THEMES } from "./themes";
 export const colors = {
   [THEMES.RED_LIGHT]: {
     bg: "#FDFFFF",
-    bg_accent: "#FFD9DA",
+    bg_accent: "#FFE6E7",
     primary: "#DE3163",
-    secondary: "#DE3163",
+    secondary: "#5A172A",
     secondary_select: "#FEEC98",
-    body: "#FDFFFF",
+    body: "#340D18",
     error: "#C5292A",
     success: "#4BB543",
   },

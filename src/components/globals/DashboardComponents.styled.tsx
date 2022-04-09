@@ -14,7 +14,7 @@ export const CustomText = styled.span<CustomTextProps>`
   font-weight: ${(props) => (props.bold ? "bold" : "normal")};
   font-size: ${(props) => (props.large ? "24px" : "16px")};
   color: ${(props) =>
-    props.secondary ? props.theme.text_01 : props.theme.primary};
+    props.secondary ? props.theme.body : props.theme.secondary};
   text-decoration: none;
   margin: 4px 0px;
 `;
@@ -27,4 +27,6 @@ export const CustomFlex = styled.div<CustomFlexProps>`
   display: flex;
   flex-direction: ${(props) => (props.vertical ? "column" : "row")};
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 5%;
 `;
