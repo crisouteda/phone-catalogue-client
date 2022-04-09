@@ -4,6 +4,7 @@ export const colors = {
   [THEMES.RED_LIGHT]: {
     bg: "#FDFFFF",
     bg_accent: "#FFE6E7",
+    bg_accent_opacity70: "#FFE6E770",
     primary: "#DE3163",
     secondary: "#5A172A",
     secondary_select: "#FEEC98",
