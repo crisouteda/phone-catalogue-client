@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Children } from "react";
 
-import { CustomText } from "./DashboardComponents.styled";
+import { CustomText, CustomFlex } from "./DashboardComponents.styled";
 
 export const Text = ({
   text,
@@ -20,3 +20,11 @@ export const Text = ({
     </CustomText>
   );
 };
+
+export const Flex = ({
+  children,
+  vertical = false,
+}: {
+  children: React.ReactNode;
+  vertical?: boolean;
+}) => <CustomFlex vertical={vertical}>{Children}</CustomFlex>;

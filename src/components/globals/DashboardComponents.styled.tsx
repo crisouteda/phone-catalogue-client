@@ -18,3 +18,13 @@ export const CustomText = styled.span<CustomTextProps>`
   text-decoration: none;
   margin: 4px 0px;
 `;
+
+interface CustomFlexProps {
+  readonly vertical: boolean;
+}
+
+export const CustomFlex = styled.div<CustomFlexProps>`
+  display: flex;
+  flex-direction: ${(props) => (props.vertical ? "column" : "row")};
+  flex-wrap: wrap;
+`;
