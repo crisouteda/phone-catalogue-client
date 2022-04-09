@@ -5,7 +5,7 @@ import { useContextState } from "../context";
 
 export default function Dashboard() {
   const { handleGetPhones } = useContextActions();
-  const { getPhones, getPhonesLoading, getPhonesError } = useContextState();
+  const { phones, phonesLoading, phonesError } = useContextState();
 
   useEffect(() => {
     handleGetPhones();
@@ -14,8 +14,8 @@ export default function Dashboard() {
   return (
     <>
       <Header title="Phone Catalogue App" />
-      {getPhonesLoading && <span>Loading...</span>}
-      {console.log({ getPhones })}
+      {phonesLoading && <span>Loading...</span>}
+      {console.log({ phones })}
     </>
   );
 }

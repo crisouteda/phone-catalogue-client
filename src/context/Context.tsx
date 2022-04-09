@@ -10,9 +10,9 @@ export interface IPayload {
 
 // Interface for the state
 interface iState {
-  getPhones: Object[];
-  getPhonesLoading: boolean;
-  getPhonesError: any;
+  phones: Object[];
+  phonesLoading: boolean;
+  phonesError: any;
 }
 
 // Interface for the actions
@@ -21,9 +21,9 @@ const StateContext = React.createContext<Partial<iState>>({});
 const DispatchContext = React.createContext<Partial<iActions>>({});
 
 const initialState: iState = {
-  getPhones: [],
-  getPhonesLoading: false,
-  getPhonesError: null,
+  phones: [],
+  phonesLoading: false,
+  phonesError: null,
 };
 
 function reducer(state: iState, action: { type: string; payload: IPayload }) {
@@ -31,20 +31,20 @@ function reducer(state: iState, action: { type: string; payload: IPayload }) {
     case GET_PHONES:
       return {
         ...state,
-        getPhonesLoading: true,
-        getPhonesErorr: null,
+        phonesLoading: true,
+        phonesErorr: null,
       };
     case GET_PHONES_SUCCESS:
       return {
         ...state,
-        getPhones: action.payload.phones,
-        getPhonesLoading: false,
+        phones: action.payload.phones,
+        phonesLoading: false,
       };
     case GET_PHONES_FAIL:
       return {
         ...state,
-        getPhonesLoading: false,
-        getPhonesError: action.payload.error,
+        phonesLoading: false,
+        phonesError: action.payload.error,
       };
     default:
       return state;
