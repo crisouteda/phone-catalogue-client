@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { Header } from "../components";
+import { Flex, Header, Card } from "../components";
 import { useContextActions } from "../context";
 import { useContextState } from "../context";
+import { PageLayout } from "./Page.style";
 
 export default function Dashboard() {
   const { handleGetPhones } = useContextActions();
@@ -15,6 +16,13 @@ export default function Dashboard() {
     <>
       <Header title="Phone Catalogue App" />
       {phonesLoading && <span>Loading...</span>}
+      <PageLayout>
+        <Flex>
+          {phones?.map((phone) => (
+            <Card phone={phone} />
+          ))}
+        </Flex>
+      </PageLayout>
     </>
   );
 }
