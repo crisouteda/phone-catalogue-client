@@ -27,4 +27,4 @@ export const Flex = ({
 }: {
   children: React.ReactNode;
   vertical?: boolean;
-}) => <CustomFlex vertical={vertical}>{Children}</CustomFlex>;
+}) => <CustomFlex vertical={vertical}>{children}</CustomFlex>;
