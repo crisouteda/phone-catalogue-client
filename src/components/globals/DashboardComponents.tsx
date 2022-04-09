@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CustomText } from "./Dashboard.styled";
+import { CustomText } from "./DashboardComponents.styled";
 
 export const Text = ({
   text,
