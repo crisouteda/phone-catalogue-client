@@ -1,45 +1,50 @@
 import React, { useReducer, useMemo } from "react";
-import {
-  IS_SHOW_FAVOURITES,
-  HANDLE_CODELANG,
-  HANDLE_SELECTED_AUDIO,
-} from "./actionTypes";
+import { GET_PHONES, GET_PHONES_SUCCESS, GET_PHONES_FAIL } from "./actionTypes";
 import Actions, { iActions } from "./ContextActions";
 
+// Interface for the payload
 export interface IPayload {
-  name: string;
-  selectedAudio: { name: string; url: string };
-  selectedLang: "Python" | "JavaScript";
+  phones: any;
+  error: any;
 }
 
-// An interface for the state
+// Interface for the state
 interface iState {
-  isShowFavourites: boolean;
-  selectedAudio: { name: string; url: string };
-  selectedLang: "Python" | "JavaScript";
+  getPhones: Object[];
+  getPhonesLoading: boolean;
+  getPhonesError: any;
 }
 
-// An interface for the actions
+// Interface for the actions
 
 const StateContext = React.createContext<Partial<iState>>({});
 const DispatchContext = React.createContext<Partial<iActions>>({});
 
+const initialState: iState = {
+  getPhones: [],
+  getPhonesLoading: false,
+  getPhonesError: null,
+};
+
 function reducer(state: iState, action: { type: string; payload: IPayload }) {
   switch (action.type) {
-    case IS_SHOW_FAVOURITES:
+    case GET_PHONES:
       return {
         ...state,
-        isShowFavourites: !state?.isShowFavourites,
+        getPhonesLoading: true,
+        getPhonesErorr: null,
       };
-    case HANDLE_SELECTED_AUDIO:
+    case GET_PHONES_SUCCESS:
       return {
         ...state,
-        selectedAudio: action.payload.selectedAudio,
+        getPhones: action.payload.phones,
+        getPhonesLoading: false,
       };
-    case HANDLE_CODELANG:
+    case GET_PHONES_FAIL:
       return {
         ...state,
-        selectedLang: action.payload.selectedLang,
+        getPhonesLoading: false,
+        getPhonesError: action.payload.error,
       };
     default:
       return state;
@@ -47,15 +52,6 @@ function reducer(state: iState, action: { type: string; payload: IPayload }) {
 }
 
 // eslint-disable-next-line consistent-return
-
-const initialState: iState = {
-  isShowFavourites: false,
-  selectedAudio: {
-    name: "guy",
-    url: "https://file.api.audio/voice-samples/guy.mp3",
-  },
-  selectedLang: "Python",
-};
 
 const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);

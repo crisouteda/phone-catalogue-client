@@ -1,47 +1,38 @@
 import React from "react";
-import //   HANDLE_FAV,
-//   IS_SHOW_FAVOURITES,
-//   HANDLE_CODELANG,
-//   HANDLE_SELECTED_AUDIO,
-"./actionTypes";
+import { getPhones } from "../api";
+import { GET_PHONES, GET_PHONES_SUCCESS, GET_PHONES_FAIL } from "./actionTypes";
 
 export interface iActions {
-  //   handleFav: any;
-  //   handleShowFav: any;
-  //   handleSelectedLang: any;
-  //   handleSelectedAudio: any;
+  handleGetPhones: any;
 }
 
-// function handleFav(dispatch: React.Dispatch<any>) {
-//   return function handleFavDispatch(favObject: IFavs) {
-//     dispatch({ type: HANDLE_FAV, payload: favObject });
-//   };
-// }
+function handleGetPhones(dispatch: React.Dispatch<any>) {
+  return function handleGetPhones() {
+    dispatch({ type: GET_PHONES });
+    try {
+      const response = getPhones();
+      dispatch({ type: GET_PHONES_SUCCESS, payload: { phones: response } });
+    } catch (e) {
+      dispatch({ type: GET_PHONES_FAIL, payload: { error: e } });
+    }
+  };
+}
 
-// function handleShowFav(dispatch: React.Dispatch<any>) {
-//   return function handleShowFavDispatch() {
-//     dispatch({ type: IS_SHOW_FAVOURITES });
-//   };
-// }
+function handleGetPhones2(dispatch: React.Dispatch<any>) {
+  return async function handleGetPhones() {
+    dispatch({ type: GET_PHONES });
+    try {
+      const response = await getPhones();
+      dispatch({ type: GET_PHONES_SUCCESS, payload: { phones: response } });
+    } catch (e) {
+      dispatch({ type: GET_PHONES_FAIL, payload: { error: e } });
+    }
+  };
+}
 
-// function handleSelectedLang(dispatch: React.Dispatch<any>) {
-//   return function handleSelectedLangDispatch(selectedLang: string) {
-//     dispatch({ type: HANDLE_CODELANG, payload: { selectedLang } });
-//   };
-// }
-
-// function handleSelectedAudio(dispatch: React.Dispatch<any>) {
-//   return function handleSelectedVoiceDispatch(selectedAudio: {
-//     name: string;
-//     url: string;
-//   }) {
-//     dispatch({ type: HANDLE_SELECTED_AUDIO, payload: { selectedAudio } });
-//   };
-// }
-
-export default {
-  //   handleFav,
-  //   handleShowFav,
-  //   handleSelectedLang,
-  //   handleSelectedAudio,
+const functions = {
+  handleGetPhones,
+  handleGetPhones2,
 };
+
+export default functions;
