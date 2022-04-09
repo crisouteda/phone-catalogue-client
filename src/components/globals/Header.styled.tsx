@@ -17,7 +17,7 @@ export const StyledHeader = styled.div`
 
   font-family: Montserrat, sans-serif;
   font-style: normal;
-  color: ${(props) => props.theme.body};
+  color: ${(props) => props.theme.bg_accent};
   font-size: 2rem;
   font-weight: 700;
 `;
