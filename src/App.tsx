@@ -1,17 +1,17 @@
 import React from "react";
 import { ThemeService } from "./services";
-import { Text } from "./components";
+import { ContextProvider } from "./context";
+import Dashboard from "./screens/Dashboard";
 
 import "./App.css";
 
 function App() {
   return (
-    <ThemeService>
-      <div>
-        <Text text="Hola" />
-        <Text text="Adios" secondary />
-      </div>
-    </ThemeService>
+    <ContextProvider>
+      <ThemeService>
+        <Dashboard />
+      </ThemeService>
+    </ContextProvider>
   );
 }
 
