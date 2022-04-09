@@ -7,23 +7,11 @@ export interface iActions {
 }
 
 function handleGetPhones(dispatch: React.Dispatch<any>) {
-  return function handleGetPhones() {
-    dispatch({ type: GET_PHONES });
-    try {
-      const response = getPhones();
-      dispatch({ type: GET_PHONES_SUCCESS, payload: { phones: response } });
-    } catch (e) {
-      dispatch({ type: GET_PHONES_FAIL, payload: { error: e } });
-    }
-  };
-}
-
-function handleGetPhones2(dispatch: React.Dispatch<any>) {
   return async function handleGetPhones() {
     dispatch({ type: GET_PHONES });
     try {
-      const response = await getPhones();
-      dispatch({ type: GET_PHONES_SUCCESS, payload: { phones: response } });
+      const { data } = await getPhones();
+      dispatch({ type: GET_PHONES_SUCCESS, payload: { phones: data } });
     } catch (e) {
       dispatch({ type: GET_PHONES_FAIL, payload: { error: e } });
     }
@@ -32,7 +20,6 @@ function handleGetPhones2(dispatch: React.Dispatch<any>) {
 
 const functions = {
   handleGetPhones,
-  handleGetPhones2,
 };
 
 export default functions;
