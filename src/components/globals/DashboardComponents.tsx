@@ -9,7 +9,7 @@ export const Text = ({
   secondary = false,
   ...rest
 }: {
-  text: string;
+  text?: string;
   large?: boolean;
   bold?: boolean;
   secondary?: boolean;
