@@ -22,12 +22,16 @@ export const ModalWrapper = styled.div`
   .modal-content {
     z-index: 20;
     width: 100%;
-    max-width: 600px;
+    max-width: 900px;
     height: 100%;
     max-height: 600px;
     border-radius: 8px;
     background: ${(props) => props.theme.bg};
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
   }
 
   .close-button {
