@@ -9,16 +9,17 @@ import {
   CLEAR_PHONE,
 } from "./actionTypes";
 import Actions, { iActions } from "./ContextActions";
+import { IPhone } from "../types";
 
 // Interface for the payload
 // export interface IPayload {}
 
 // Interface for the state
 interface iState {
-  phones: Object[];
+  phones: IPhone[];
   phonesLoading: boolean;
   phonesError: any;
-  phone?: { id: string };
+  phone?: IPhone;
   phoneLoading: boolean;
   phoneError: any;
 }
