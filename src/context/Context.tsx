@@ -1,4 +1,4 @@
-import React, { useReducer, useMemo, useEffect } from "react";
+import React, { useReducer, useMemo } from "react";
 import {
   GET_PHONES,
   GET_PHONES_SUCCESS,
@@ -6,6 +6,7 @@ import {
   GET_PHONE,
   GET_PHONE_SUCCESS,
   GET_PHONE_FAIL,
+  CLEAR_PHONE,
 } from "./actionTypes";
 import Actions, { iActions } from "./ContextActions";
 
@@ -59,20 +60,25 @@ function reducer(state: iState, action: { type: string; payload: any }) {
     case GET_PHONE:
       return {
         ...state,
-        phonesLoading: true,
-        phonesErorr: null,
+        phoneLoading: true,
+        phoneErorr: null,
       };
     case GET_PHONE_SUCCESS:
       return {
         ...state,
-        phones: action.payload,
-        phonesLoading: false,
+        phone: action.payload,
+        phoneLoading: false,
       };
     case GET_PHONE_FAIL:
       return {
         ...state,
-        phonesLoading: false,
-        phonesError: action.payload,
+        phoneLoading: false,
+        phoneError: action.payload,
+      };
+    case CLEAR_PHONE:
+      return {
+        ...state,
+        phone: undefined,
       };
     default:
       return state;
