@@ -17,6 +17,10 @@ export const CustomText = styled.span<CustomTextProps>`
     props.secondary ? props.theme.body : props.theme.secondary};
   text-decoration: none;
   margin: 4px 0px;
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
 `;
 
 interface CustomFlexProps {
