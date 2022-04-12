@@ -52,11 +52,11 @@ export const ModalWrapper = styled.div`
 
   .close-button {
     color: ${(props) => props.theme.secondary};
+    align-self: flex-end;
     border: 0;
     background: none;
-    position: absolute;
+    position: sticky;
     top: 8px;
-    right: 8px;
     cursor: pointer;
     width: 48px;
     height: 48px;
