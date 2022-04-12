@@ -58,6 +58,7 @@ export const StyledCard = styled.div`
   &:hover {
     .card-image {
       width: 168px;
+      height: 218px;
       transition: 0.3s;
     }
   }
