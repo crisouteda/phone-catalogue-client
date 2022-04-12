@@ -41,5 +41,8 @@ export const ModalWrapper = styled.div`
     position: absolute;
     top: 8px;
     right: 8px;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
   }
 `;
