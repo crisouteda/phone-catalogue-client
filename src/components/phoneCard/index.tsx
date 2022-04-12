@@ -1,1 +1,1 @@
-export * from "./PhoneCard";
+export { PhoneCard as default } from "./PhoneCard";

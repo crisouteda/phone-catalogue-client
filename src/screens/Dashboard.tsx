@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, memo } from "react";
+import React, { useEffect, memo, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
-import { Flex, Header, PhoneCard, Card } from "../components";
+import { Flex, Header, Card, Modal } from "../components";
 import { useContextActions } from "../context";
 import { useContextState } from "../context";
 import { PageLayout } from "./Page.style";
-import { PhoneModal } from "../components/phoneModal";
+
+const PhoneModal = lazy(() => import("../components/phoneModal"));
+const PhoneCard = lazy(() => import("../components/phoneCard"));
 
 const loadingCards = Array.apply(null, Array(10));
 
@@ -35,21 +37,17 @@ export default memo(function Dashboard() {
       <PageLayout>
         <Flex>
           {phonesLoading
-            ? loadingCards?.map((_, i) => (
-                <Card
-                  key={i}
-                  image={undefined}
-                  altImage={undefined}
-                  children={null}
-                  handleOnClick={undefined}
-                />
-              ))
+            ? loadingCards?.map((_, i) => <Card key={i} />)
             : phones?.map((phone) => (
-                <PhoneCard key={phone.id} phone={phone} />
+                <Suspense key={phone.id} fallback={<Card />}>
+                  <PhoneCard phone={phone} />
+                </Suspense>
               ))}
         </Flex>
       </PageLayout>
-      <PhoneModal />
+      <Suspense fallback={<Modal />}>
+        <PhoneModal />
+      </Suspense>
     </>
   );
 });

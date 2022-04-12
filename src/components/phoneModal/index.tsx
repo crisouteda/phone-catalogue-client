@@ -1,1 +1,1 @@
-export * from "./PhoneModal";
+export { PhoneModal as default } from "./PhoneModal";
