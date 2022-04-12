@@ -17,10 +17,10 @@ export interface iActions {
 }
 
 function handleGetPhones(dispatch: React.Dispatch<any>) {
-  return async function handleGetPhones(items: number, pages: number) {
+  return async function handleGetPhones(items: number, lastScanned?: string) {
     dispatch({ type: GET_PHONES });
     try {
-      const response = await getPhones(items, pages);
+      const response = await getPhones(items, lastScanned);
       dispatch({ type: GET_PHONES_SUCCESS, payload: response });
     } catch (e) {
       dispatch({ type: GET_PHONES_FAIL, payload: e });
@@ -33,7 +33,6 @@ function handleGetPhone(dispatch: React.Dispatch<any>) {
     dispatch({ type: GET_PHONE });
     try {
       const response = await getPhone(id);
-      console.log({ response });
       dispatch({ type: GET_PHONE_SUCCESS, payload: response.Items[0] });
     } catch (e) {
       dispatch({ type: GET_PHONE_FAIL, payload: e });

@@ -6,9 +6,9 @@ export const getPhone = async (id: string) => {
   return response;
 };
 
-export const getPhones = async (items: number, page: number) => {
+export const getPhones = async (items: number, lastScanned?: string) => {
   const request = await fetch(
-    `${Config.apiBase}phones/pagination/${items}/${page}`
+    `${Config.apiBase}phones/pagination/${items}/${lastScanned}`
   );
   const response = await request.json();
   return response;

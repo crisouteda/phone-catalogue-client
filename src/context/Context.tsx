@@ -22,7 +22,7 @@ interface iState {
   phone?: IPhone;
   phoneLoading: boolean;
   phoneError: any;
-  hasMorePhones: boolean;
+  lastScanned?: string;
 }
 
 // Interface for the actions
@@ -37,7 +37,7 @@ const initialState: iState = {
   phone: undefined,
   phoneLoading: false,
   phoneError: null,
-  hasMorePhones: true,
+  lastScanned: undefined,
 };
 
 function reducer(state: iState, action: { type: string; payload: any }) {
@@ -46,21 +46,19 @@ function reducer(state: iState, action: { type: string; payload: any }) {
       return {
         ...state,
         phonesLoading: true,
-        hasMorePhones: false,
         phonesErorr: null,
       };
     case GET_PHONES_SUCCESS:
       return {
         ...state,
         phones: [...state.phones, ...action.payload.newItems],
-        hasMorePhones: action.payload.hasMore,
+        lastScanned: action.payload.lastEvaluatedKey,
         phonesLoading: false,
       };
     case GET_PHONES_FAIL:
       return {
         ...state,
         phonesLoading: false,
-        hasMorePhones: false,
         phonesError: action.payload,
       };
     case GET_PHONE:

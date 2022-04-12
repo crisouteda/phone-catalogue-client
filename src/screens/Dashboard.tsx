@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, memo, lazy, Suspense } from "react";
+import React, { useEffect, memo, lazy, Suspense } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router-dom";
-import { HeaderTitle } from "../constants";
+import { HeaderTitle, ItemsDisplayed } from "../constants";
 import { Flex, Header, Card, Modal, LoadingCards } from "../components";
 import { useContextActions } from "../context";
 import { useContextState } from "../context";
@@ -15,9 +15,7 @@ export default memo(function Dashboard() {
   const location: any = useLocation();
   const { handleGetPhones, handleGetPhone, handleClearPhone } =
     useContextActions();
-  const { phones, hasMorePhones } = useContextState();
-  const [page, setPage] = useState(0);
-  const items = 20;
+  const { phones, lastScanned } = useContextState();
 
   useEffect(() => {
     const url = new URLSearchParams(location.search);
@@ -29,13 +27,13 @@ export default memo(function Dashboard() {
     }
   }, [location]);
 
-  useEffect(() => {
-    handleGetPhones(items, page);
-  }, [items, page]);
-
   const fetchMoreData = () => {
-    setPage(page + 1);
+    handleGetPhones(ItemsDisplayed, lastScanned);
   };
+
+  useEffect(() => {
+    fetchMoreData();
+  }, []);
 
   return (
     <>
@@ -45,7 +43,7 @@ export default memo(function Dashboard() {
           <InfiniteScroll
             dataLength={phones?.length}
             next={fetchMoreData}
-            hasMore={hasMorePhones || false}
+            hasMore={!!lastScanned}
             loader={<LoadingCards />}
           >
             <Flex>
