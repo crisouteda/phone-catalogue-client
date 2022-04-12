@@ -6,6 +6,7 @@ interface CustomTextProps {
   readonly bold: boolean;
   readonly large: boolean;
   readonly secondary: boolean;
+  readonly isTitle: boolean;
 }
 
 export const CustomText = styled.span<CustomTextProps>`
@@ -17,6 +18,8 @@ export const CustomText = styled.span<CustomTextProps>`
     props.secondary ? props.theme.body : props.theme.secondary};
   text-decoration: none;
   margin: 4px 0px;
+  flex-basis: ${(props) => props.isTitle && "100%"};
+  text-align: ${(props) => props.isTitle && "center"};
 
   &:first-letter {
     text-transform: uppercase;
