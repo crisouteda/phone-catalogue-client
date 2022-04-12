@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import { useLocation } from "react-router-dom";
 import { Flex, Header, PhoneCard, Card } from "../components";
 import { useContextActions } from "../context";
@@ -9,7 +9,7 @@ import { PhoneModal } from "../components/phoneModal";
 
 const loadingCards = Array.apply(null, Array(10));
 
-export default function Dashboard() {
+export default memo(function Dashboard() {
   const location: any = useLocation();
   const { handleGetPhones, handleGetPhone, handleClearPhone } =
     useContextActions();
@@ -52,4 +52,4 @@ export default function Dashboard() {
       <PhoneModal />
     </>
   );
-}
+});

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import InnerImageZoom from "react-inner-image-zoom";
 import { Modal, Text } from "../../components";
 import { ModalContent } from "./PhoneModal.styled";
 import { useContextState } from "../../context";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 
-export const PhoneModal = () => {
+export const PhoneModal = memo(() => {
   const { phone } = useContextState();
 
   if (!phone) return null;
@@ -38,4 +38,4 @@ export const PhoneModal = () => {
       </ModalContent>
     </Modal>
   );
-};
+});
