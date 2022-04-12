@@ -11,6 +11,5 @@ export const getPhones = async (items: number, page: number) => {
     `${Config.apiBase}phones/pagination/${items}/${page}`
   );
   const response = await request.json();
-  console.log({ response });
   return response;
 };
