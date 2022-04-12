@@ -32,6 +32,22 @@ export const ModalWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background: ${(props) => props.theme.secondary_opacity40};
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: ${(props) => props.theme.secondary};
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    }
   }
 
   .close-button {

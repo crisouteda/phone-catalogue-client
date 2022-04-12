@@ -8,6 +8,7 @@ export const colors = {
     bg_accent_opacity40: "#FFE6E740",
     primary: "#DE3163",
     secondary: "#5A172A",
+    secondary_opacity40: "#5A172A40",
     body: "#613240",
     error: "#C5292A",
     success: "#4BB543",
