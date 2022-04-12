@@ -17,7 +17,8 @@ export const Card = memo(
 
     return (
       <StyledCard onClick={handleOnClick}>
-        <img className="card-image" src={image} alt={altImage} />
+        {image && <img className="card-image" src={image} alt={altImage} />}
+        {!image && <div className="image-placeholder" />}
         <div className="card-bottom">{children}</div>
       </StyledCard>
     );

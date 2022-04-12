@@ -27,10 +27,19 @@ export const StyledCard = styled.div`
     background-color: ${(props) => props.theme.bg_accent};
     animation: ${LoadingState} 1s infinite alternate;
     transition: 0.3s;
+    border-radius: 4px;
     border: 0;
     outline: 0;
 
     text-align: center;
+  }
+
+  .image-placeholder {
+    background-color: ${(props) => props.theme.bg_accent};
+    animation: ${LoadingState} 1s infinite alternate;
+    border-radius: 8px;
+    width: 160px;
+    height: 70%;
   }
 
   .card-bottom {
