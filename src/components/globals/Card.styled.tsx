@@ -2,6 +2,12 @@ import styled, { keyframes } from "styled-components";
 
 import { WidthThreshold } from "../../constants";
 
+const LoadingState = (props: any) => keyframes`
+0% {
+  background-color: ${props.theme.bg_accent_opacity40};
+}
+`;
+
 export const StyledCard = styled.div`
   width: 220px;
   height: 304px;
@@ -21,6 +27,8 @@ export const StyledCard = styled.div`
     height: 70%;
     width: 160px;
     background-color: ${(props) => props.theme.bg_accent};
+    animation: ${LoadingState} 1s infinite alternate;
+    transition: 0.3s;
     border: 0;
     outline: 0;
 
