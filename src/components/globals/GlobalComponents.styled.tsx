@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { WidthThreshold } from "../../constants";
-
 interface CustomTextProps {
   readonly bold: boolean;
   readonly large: boolean;

@@ -1,7 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-import { WidthThreshold } from "../../constants";
-
 const LoadingState = (props: any) => keyframes`
 0% {
   background-color: ${props.theme.bg_accent_opacity40};
