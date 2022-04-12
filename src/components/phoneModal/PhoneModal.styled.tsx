@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { WidthThreshold } from "../../constants";
 
 const OpenModal = keyframes` 
   0% {
@@ -33,6 +34,7 @@ export const ModalContent = styled.div`
   }
 
   .vertical-list {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     width: 65%;
@@ -41,7 +43,13 @@ export const ModalContent = styled.div`
 
   > * {
     &:first-child {
-       margin-bottom: 20px;
+      margin-bottom: 20px;
     }
+  }
 
+  @media (max-width: ${WidthThreshold}) {
+    .vertical-list {
+      width: 90%;
+    }
+  }
 `;
