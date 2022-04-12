@@ -2,6 +2,7 @@
 import React, { useState, useEffect, memo, lazy, Suspense } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router-dom";
+import { HeaderTitle } from "../constants";
 import { Flex, Header, Card, Modal, LoadingCards } from "../components";
 import { useContextActions } from "../context";
 import { useContextState } from "../context";
@@ -38,7 +39,7 @@ export default memo(function Dashboard() {
 
   return (
     <>
-      <Header title="Phone Catalogue App" />
+      <Header title={HeaderTitle} />
       <PageLayout>
         {phones?.length ? (
           <InfiniteScroll
