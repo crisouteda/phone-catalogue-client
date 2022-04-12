@@ -10,8 +10,6 @@ export const PhoneModal = () => {
 
   if (!phone) return null;
 
-  console.log({ phone });
-
   const { name, imageFileName, thumbnailFileName, id, ...rest } = phone;
 
   return (
