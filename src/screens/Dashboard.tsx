@@ -2,15 +2,13 @@
 import React, { useState, useEffect, memo, lazy, Suspense } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router-dom";
-import { Flex, Header, Card, Modal } from "../components";
+import { Flex, Header, Card, Modal, LoadingCards } from "../components";
 import { useContextActions } from "../context";
 import { useContextState } from "../context";
 import { PageLayout } from "./Page.style";
 
 const PhoneModal = lazy(() => import("../components/phoneModal"));
 const PhoneCard = lazy(() => import("../components/phoneCard"));
-
-const loadingCards = Array.apply(null, Array(10));
 
 export default memo(function Dashboard() {
   const location: any = useLocation();
@@ -47,7 +45,7 @@ export default memo(function Dashboard() {
             dataLength={phones?.length}
             next={fetchMoreData}
             hasMore={hasMorePhones || false}
-            loader={<Card />}
+            loader={<LoadingCards />}
           >
             <Flex>
               {phones?.map((phone) => (
