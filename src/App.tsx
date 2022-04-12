@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { RoutingService, ThemeService } from "./services";
 import { ContextProvider } from "./context";
 
@@ -14,4 +14,4 @@ function App() {
   );
 }
 
-export default App;
+export default memo(App);
