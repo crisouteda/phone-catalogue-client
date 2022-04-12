@@ -22,7 +22,7 @@ export const StyledCard = styled.div`
   cursor: pointer;
 
   .card-image {
-    height: 70%;
+    max-height: 75%;
     width: 160px;
     background-color: ${(props) => props.theme.bg_accent};
     animation: ${LoadingState} 1s infinite alternate;
