@@ -1,2 +1,3 @@
 export * from "./globals";
-export * from "./card";
+export * from "./phoneCard";
+export * from "./phoneModal";
