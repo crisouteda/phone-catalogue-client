@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Flex, Header, Card } from "../components";
+import { Flex, Header, PhoneCard, Card } from "../components";
 import { useContextActions } from "../context";
 import { useContextState } from "../context";
 import { PageLayout } from "./Page.style";
 import { PhoneModal } from "../components/phoneModal";
+
+const loadingCards = Array.apply(null, Array(10));
 
 export default function Dashboard() {
   const location: any = useLocation();
@@ -30,12 +32,18 @@ export default function Dashboard() {
   return (
     <>
       <Header title="Phone Catalogue App" />
-      {phonesLoading && <span>Loading...</span>}
       <PageLayout>
         <Flex>
-          {phones?.map((phone) => (
-            <Card phone={phone} />
-          ))}
+          {phonesLoading
+            ? loadingCards?.map(() => (
+                <Card
+                  image={undefined}
+                  altImage={undefined}
+                  children={null}
+                  handleOnClick={undefined}
+                />
+              ))
+            : phones?.map((phone) => <PhoneCard phone={phone} />)}
         </Flex>
       </PageLayout>
       <PhoneModal />
