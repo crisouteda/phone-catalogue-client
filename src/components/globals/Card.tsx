@@ -23,10 +23,3 @@ export const Card = memo(
     );
   }
 );
-
-// const img = new Image();
-// if (image) img.src = image;
-// const height = img.height;
-// const width = img.width;
-
-// console.log({ height, width });
