@@ -20,6 +20,10 @@ export const CustomText = styled.span<CustomTextProps>`
   margin: 4px 0px;
   flex-basis: ${(props) => props.isTitle && "100%"};
   text-align: ${(props) => props.isTitle && "center"};
+  width: ${(props) => props.isTitle && "100%"};
+  white-space: ${(props) => props.isTitle && "nowrap"};
+  overflow: ${(props) => props.isTitle && "hidden"};
+  text-overflow: ${(props) => props.isTitle && "ellipsis"};
 
   &:first-letter {
     text-transform: uppercase;

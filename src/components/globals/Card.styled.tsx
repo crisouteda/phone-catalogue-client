@@ -40,13 +40,12 @@ export const StyledCard = styled.div`
     flex-direction: column;
     align-items: center;
 
-    width: 100%;
+    width: calc(100% - 16px);
     height: 52px;
     background: ${(props) => props.theme.bg_accent};
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 8px;
   }
 
   &:hover {

@@ -17,8 +17,8 @@ export const PhoneCard = memo(({ phone }: any) => {
       image={phone.thumbnailFileName}
       altImage={`phone-${phone.name}`}
     >
-      <Text secondary text={phone.name} />
-      <Text bold text={priceHelper()} />
+      <Text secondary isTitle text={phone.name} />
+      <Text bold isTitle text={priceHelper()} />
     </Card>
   );
 });
