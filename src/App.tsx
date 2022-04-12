@@ -2,8 +2,6 @@ import React, { memo } from "react";
 import { RoutingService, ThemeService } from "./services";
 import { ContextProvider } from "./context";
 
-import "./App.css";
-
 function App() {
   return (
     <ContextProvider>
