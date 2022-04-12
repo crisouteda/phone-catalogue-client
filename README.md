@@ -64,3 +64,12 @@ Push the changes to the `prod` branch in Github. Netlify will run
 - The aplication uses [React.js](https://reactjs.org/) framework v17
 - The main style tool used is [styled-components](https://styled-components.com/) <br/>
 - [React-inner-image-zoom](https://github.com/laurenashpole/react-inner-image-zoom): implemented to allow the user to gather more information from the image
+
+## Quality
+
+The quality test has been evaluated by [Lighthouse](https://developers.google.com/web/tools/lighthouse)
+
+- Performance: 96-100%
+- Accessibility: 100
+- Best Practices: 100
+- SEO: 100
