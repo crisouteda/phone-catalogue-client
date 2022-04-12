@@ -18,18 +18,30 @@ export const ModalContent = styled.div`
   animation: 0.5s ease-in-out ${OpenModal};
 
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
 
   .phone-image {
-    margin-right: 40px;
+    height: auto;
+    max-height: 700px;
+    width: auto;
+    max-width: 250px;
+  }
+
+  .iiz__hint {
+    bottom: initial;
   }
 
   .vertical-list {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 65%;
     min-width: 200px;
   }
+
+  > * {
+    &:first-child {
+       margin-bottom: 20px;
+    }
+
 `;
