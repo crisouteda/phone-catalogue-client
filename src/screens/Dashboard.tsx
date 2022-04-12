@@ -40,7 +40,7 @@ export default memo(function Dashboard() {
     <>
       <Header title="Phone Catalogue App" />
       <PageLayout>
-        {phones && (
+        {phones?.length ? (
           <InfiniteScroll
             dataLength={phones?.length}
             next={fetchMoreData}
@@ -55,6 +55,8 @@ export default memo(function Dashboard() {
               ))}
             </Flex>
           </InfiniteScroll>
+        ) : (
+          <LoadingCards />
         )}
       </PageLayout>
       <Suspense fallback={<Modal />}>
