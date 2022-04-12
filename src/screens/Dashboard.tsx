@@ -35,15 +35,18 @@ export default function Dashboard() {
       <PageLayout>
         <Flex>
           {phonesLoading
-            ? loadingCards?.map(() => (
+            ? loadingCards?.map((_, i) => (
                 <Card
+                  key={i}
                   image={undefined}
                   altImage={undefined}
                   children={null}
                   handleOnClick={undefined}
                 />
               ))
-            : phones?.map((phone) => <PhoneCard phone={phone} />)}
+            : phones?.map((phone) => (
+                <PhoneCard key={phone.id} phone={phone} />
+              ))}
         </Flex>
       </PageLayout>
       <PhoneModal />
