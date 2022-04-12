@@ -1,8 +1,13 @@
-import axios from "axios";
 import { Config } from "../services";
 
-export const getPhone = async (id: string) =>
-  await axios.get(`${Config.apiBase}phones/phone/${id}`);
+export const getPhone = async (id: string) => {
+  const request = await fetch(`${Config.apiBase}phones/phone/${id}`);
+  const response = await request.json();
+  return response;
+};
 
-export const getPhones = async () =>
-  await axios.get(`${Config.apiBase}phones/phones`);
+export const getPhones = async () => {
+  const request = await fetch(`${Config.apiBase}phones/phones`);
+  const response = await request.json();
+  return response;
+};

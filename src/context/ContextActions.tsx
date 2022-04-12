@@ -20,8 +20,8 @@ function handleGetPhones(dispatch: React.Dispatch<any>) {
   return async function handleGetPhones() {
     dispatch({ type: GET_PHONES });
     try {
-      const { data } = await getPhones();
-      dispatch({ type: GET_PHONES_SUCCESS, payload: data });
+      const response = await getPhones();
+      dispatch({ type: GET_PHONES_SUCCESS, payload: response });
     } catch (e) {
       dispatch({ type: GET_PHONES_FAIL, payload: e });
     }
@@ -32,8 +32,8 @@ function handleGetPhone(dispatch: React.Dispatch<any>) {
   return async function handleGetPhone(id: string) {
     dispatch({ type: GET_PHONE });
     try {
-      const { data } = await getPhone(id);
-      dispatch({ type: GET_PHONE_SUCCESS, payload: data.Items[0] });
+      const response = await getPhone(id);
+      dispatch({ type: GET_PHONE_SUCCESS, payload: response });
     } catch (e) {
       dispatch({ type: GET_PHONE_FAIL, payload: e });
     }
