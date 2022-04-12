@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, memo, lazy, Suspense } from "react";
+import React, { useState, useEffect, memo, lazy, Suspense } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router-dom";
 import { Flex, Header, Card, Modal } from "../components";
 import { useContextActions } from "../context";
@@ -15,7 +16,9 @@ export default memo(function Dashboard() {
   const location: any = useLocation();
   const { handleGetPhones, handleGetPhone, handleClearPhone } =
     useContextActions();
-  const { phones, phonesLoading } = useContextState();
+  const { phones, hasMorePhones } = useContextState();
+  const [page, setPage] = useState(0);
+  const items = 20;
 
   useEffect(() => {
     const url = new URLSearchParams(location.search);
@@ -28,22 +31,33 @@ export default memo(function Dashboard() {
   }, [location]);
 
   useEffect(() => {
-    handleGetPhones();
-  }, []);
+    handleGetPhones(items, page);
+  }, [items, page]);
+
+  const fetchMoreData = () => {
+    setPage(page + 1);
+  };
 
   return (
     <>
       <Header title="Phone Catalogue App" />
       <PageLayout>
-        <Flex>
-          {phonesLoading
-            ? loadingCards?.map((_, i) => <Card key={i} />)
-            : phones?.map((phone) => (
+        {phones && (
+          <InfiniteScroll
+            dataLength={phones?.length}
+            next={fetchMoreData}
+            hasMore={hasMorePhones || false}
+            loader={<Card />}
+          >
+            <Flex>
+              {phones?.map((phone) => (
                 <Suspense key={phone.id} fallback={<Card />}>
                   <PhoneCard phone={phone} />
                 </Suspense>
               ))}
-        </Flex>
+            </Flex>
+          </InfiniteScroll>
+        )}
       </PageLayout>
       <Suspense fallback={<Modal />}>
         <PhoneModal />

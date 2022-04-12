@@ -17,10 +17,10 @@ export interface iActions {
 }
 
 function handleGetPhones(dispatch: React.Dispatch<any>) {
-  return async function handleGetPhones() {
+  return async function handleGetPhones(items: number, pages: number) {
     dispatch({ type: GET_PHONES });
     try {
-      const response = await getPhones();
+      const response = await getPhones(items, pages);
       dispatch({ type: GET_PHONES_SUCCESS, payload: response });
     } catch (e) {
       dispatch({ type: GET_PHONES_FAIL, payload: e });
