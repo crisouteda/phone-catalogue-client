@@ -5,6 +5,7 @@ export const colors = {
     bg: "#FDFFFF",
     bg_accent: "#FFE6E7",
     bg_accent_opacity70: "#FFE6E770",
+    bg_accent_opacity40: "#FFE6E740",
     primary: "#DE3163",
     secondary: "#5A172A",
     // secondary_select: "#FEEC98",
