@@ -33,7 +33,8 @@ function handleGetPhone(dispatch: React.Dispatch<any>) {
     dispatch({ type: GET_PHONE });
     try {
       const response = await getPhone(id);
-      dispatch({ type: GET_PHONE_SUCCESS, payload: response });
+      console.log({ response });
+      dispatch({ type: GET_PHONE_SUCCESS, payload: response.Items[0] });
     } catch (e) {
       dispatch({ type: GET_PHONE_FAIL, payload: e });
     }
