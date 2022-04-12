@@ -59,9 +59,7 @@ Push the changes to the `main` branch in Github. Netlify will run
 
 Push the changes to the `prod` branch in Github. Netlify will run
 
-## Style tools
-
-### Tools
+## Tools
 
 - The aplication uses [React.js](https://reactjs.org/) framework v17
 - The main style tool used is [styled-components](https://styled-components.com/) <br/>
