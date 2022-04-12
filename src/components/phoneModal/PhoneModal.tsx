@@ -16,8 +16,8 @@ export const PhoneModal = () => {
 
   return (
     <Modal>
-      <Text text={name} large bold />
       <ModalContent>
+        <Text text={name} large bold isTitle />
         {imageFileName && (
           <InnerImageZoom
             width={300}
