@@ -7,6 +7,15 @@ import {
   GET_PHONE_SUCCESS,
   GET_PHONE_FAIL,
   CLEAR_PHONE,
+  SING_UP,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAIL,
+  SING_IN,
+  SIGN_IN_FAIL,
+  SIGN_IN_SUCCESS,
+  IS_AUTH,
+  IS_AUTH_SUCCESS,
+  IS_AUTH_FAIL,
 } from "./actionTypes";
 import Actions, { iActions } from "./ContextActions";
 import { IPhone } from "../types";
@@ -51,7 +60,7 @@ function reducer(state: iState, action: { type: string; payload: any }) {
     case GET_PHONES_SUCCESS:
       return {
         ...state,
-        phones: [...state.phones, ...action.payload.newItems],
+        phones: [...state.phones, ...action.payload],
         lastScanned: action.payload.lastEvaluatedKey,
         phonesLoading: false,
       };
