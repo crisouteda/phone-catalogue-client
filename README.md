@@ -2,8 +2,8 @@
 
 The api endpoints called are:
 
-- Get list with basic information of phones: `phones/phones`
-- Get extended information about one phone: `phones/phone/:id`
+- Get a short list (items= number of items retrieved) with basic information of phones: `phones/pagination/:items/:exclusiveStartKey
+- Get extended information about one phone: `phones/:id`
 
 ## Starting 🚀
 
@@ -64,12 +64,13 @@ Push the changes to the `prod` branch in Github. Netlify will run
 - The aplication uses [React.js](https://reactjs.org/) framework v17
 - The main style tool used is [styled-components](https://styled-components.com/) <br/>
 - [React-inner-image-zoom](https://github.com/laurenashpole/react-inner-image-zoom): implemented to allow the user to gather more information from the image
+- [react-infinite-scroll-component](https://github.com/ankeetmaini/react-infinite-scroll-component): added to handle infinite scroll loading states and calls to the server
 
 ## Quality
 
 The quality test has been evaluated by [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
 - Performance: 96-100%
-- Accessibility: 100
-- Best Practices: 100
-- SEO: 100
+- Accessibility: 100%
+- Best Practices: 100%
+- SEO: 100%
