@@ -39,3 +39,81 @@ export const CustomFlex = styled.div<CustomFlexProps>`
   justify-content: center;
   gap: 5%;
 `;
+
+interface CustomButtonProps {
+  readonly alignSelf?: string;
+}
+
+export const CustomButton = styled.button<CustomButtonProps>`
+  background ${(props) => props.theme.secondary};
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+
+
+  color: ${(props) => props.theme.bg};
+  font-size: 1.4rem;
+
+  padding: 8px 20px;
+  align-self: ${(props) => props.alignSelf && props.alignSelf};
+  margin: 0px 20px;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+`;
+
+export const Label = styled.label<CustomButtonProps>`
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  width: 100%;
+  font-weight: bold;
+  align-self: flex-start;
+  color: ${(props) => props.theme.secondary};
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
+`;
+
+export const ErrorLabel = styled(Label)`
+  color: ${(props) => props.theme.error};
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+`;
+
+export const InputBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Input = styled.input`
+  background: ${(props) => props.theme.bg_accent};
+  border: 0px;
+  border-radius: 4px;
+  color: ${(props) => props.theme.body};
+  padding: 11px;
+  width: 100%;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  transition: all 0.1s ease-in-out;
+  margin: 10px 0px 0px;
+  &::placeholder {
+    color: ${(props) => props.theme.primary};
+  }
+  &:hover {
+    outline: 1px solid ${(props) => props.theme.shadow};
+  }
+  &:disabled {
+    box-shadow: none;
+  }
+  &:invalid {
+    outline: 10px solid red;
+  }
+`;

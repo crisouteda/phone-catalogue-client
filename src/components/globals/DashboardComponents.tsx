@@ -1,6 +1,14 @@
 import React, { memo } from "react";
 
-import { CustomText, CustomFlex } from "./GlobalComponents.styled";
+import {
+  CustomText,
+  CustomFlex,
+  CustomButton,
+  Label,
+  ErrorLabel,
+  Input,
+  InputBox,
+} from "./GlobalComponents.styled";
 
 export const Text = memo(
   ({
@@ -41,3 +49,59 @@ export const Flex = memo(
     vertical?: boolean;
   }) => <CustomFlex vertical={vertical}>{children}</CustomFlex>
 );
+
+export const PrimaryButton = memo(
+  ({
+    text,
+    handleOnClick,
+    alignSelf,
+    disabled,
+  }: {
+    text: string;
+    handleOnClick?: () => void;
+    alignSelf?: string;
+    disabled?: boolean;
+  }) => (
+    <CustomButton
+      onClick={handleOnClick}
+      alignSelf={alignSelf}
+      disabled={disabled}
+    >
+      {text}
+    </CustomButton>
+  )
+);
+
+export const CustomInput = ({
+  type,
+  value,
+  label,
+  id,
+  onChange,
+  error,
+}: {
+  type?: string;
+  value?: string;
+  label?: string;
+  id?: string;
+  onChange: (e: string) => void;
+  error?: string;
+}) => {
+  if (!id) throw new Error("specify an id for each input");
+  return (
+    <InputBox>
+      <Label htmlFor={id}>{label}</Label>
+      <Input
+        id={id}
+        type={type}
+        value={!value ? "" : value}
+        onChange={(e: any) => onChange(e.target.value)}
+      />
+      {error && (
+        <ErrorLabel data-testid={id + "_error"} htmlFor={id}>
+          {error}
+        </ErrorLabel>
+      )}
+    </InputBox>
+  );
+};
