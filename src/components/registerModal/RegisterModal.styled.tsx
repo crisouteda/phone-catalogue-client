@@ -1,0 +1,31 @@
+import styled, { keyframes } from "styled-components";
+import { WidthThreshold } from "../../constants";
+
+const OpenModal = keyframes` 
+  0% {
+    transform: translateY(-5%);
+    opacity: 0;
+  }
+
+   100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+export const ModalContent = styled.div`
+  margin: 40px;
+  height: 100%;
+  width: 90%;
+  animation: 0.5s ease-in-out ${OpenModal};
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-width: ${WidthThreshold}) {
+    width: 90%;
+  }
+`;
