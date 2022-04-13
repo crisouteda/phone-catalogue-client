@@ -7,7 +7,7 @@ import { useContextActions } from "../../context";
 export const RegisterModal = memo(() => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(true);
 
   const { handleSignIn, handleSignUp } = useContextActions();
 
