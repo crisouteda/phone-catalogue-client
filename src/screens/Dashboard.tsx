@@ -3,7 +3,14 @@ import React, { useEffect, memo, lazy, Suspense } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router-dom";
 import { HeaderTitle, ItemsDisplayed } from "../constants";
-import { Flex, Header, Card, Modal, LoadingCards } from "../components";
+import {
+  Flex,
+  Header,
+  Card,
+  Modal,
+  LoadingCards,
+  RegisterModal,
+} from "../components";
 import { useContextActions } from "../context";
 import { useContextState } from "../context";
 import { PageLayout } from "./Page.style";
@@ -20,10 +27,16 @@ export default memo(function Dashboard() {
   useEffect(() => {
     const url = new URLSearchParams(location.search);
     const id = url.get("id");
+    const register = url.get("register");
     if (id) {
       handleGetPhone(id);
     } else {
       handleClearPhone();
+    }
+    if (register && JSON.parse(register)) {
+      //   handleRegister();
+      // } else {
+      //   handleClearRegister();
     }
   }, [location]);
 
@@ -60,6 +73,7 @@ export default memo(function Dashboard() {
       </PageLayout>
       <Suspense fallback={<Modal />}>
         <PhoneModal />
+        <RegisterModal />
       </Suspense>
     </>
   );
