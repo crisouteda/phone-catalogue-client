@@ -9,7 +9,7 @@ export const LoadingCards = memo(() => {
   return (
     <Flex>
       {loadingCards.map((_, i) => (
-        <Card key={`empty-card-${i}`} />
+        <Card key={`empty-card-${i}`} className="loading-card" />
       ))}
     </Flex>
   );
