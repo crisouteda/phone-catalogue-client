@@ -11,6 +11,8 @@ export const IS_AUTH = "IS_AUTH";
 export const IS_AUTH_SUCCESS = "IS_AUTH_SUCCESS";
 export const IS_AUTH_FAIL = "IS_AUTH_FAIL";
 
+export const SING_OUT = "SIGN_OUT";
+
 // phones context
 export const GET_PHONES = "GET_PHONES";
 export const GET_PHONES_SUCCESS = "GET_PHONES_SUCCESS";

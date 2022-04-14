@@ -14,9 +14,10 @@ import {
   SING_IN,
   SIGN_IN_FAIL,
   SIGN_IN_SUCCESS,
-  IS_AUTH,
-  IS_AUTH_SUCCESS,
-  IS_AUTH_FAIL,
+  SING_OUT,
+  // IS_AUTH,
+  // IS_AUTH_SUCCESS,
+  // IS_AUTH_FAIL,
 } from "./actionTypes";
 
 export interface iActions {
@@ -25,11 +26,11 @@ export interface iActions {
   handleClearPhone: any;
   handleSignUp: any;
   handleSignIn: any;
-  handleIsSign: any;
+  handleSignOut: any;
 }
 
 function handleGetPhones(dispatch: React.Dispatch<any>) {
-  return async function handleGetPhones(items: number, lastScanned?: string) {
+  return async function (items: number, lastScanned?: string) {
     dispatch({ type: GET_PHONES });
     try {
       const response = await getPhones(items, lastScanned);
@@ -41,7 +42,7 @@ function handleGetPhones(dispatch: React.Dispatch<any>) {
 }
 
 function handleGetPhone(dispatch: React.Dispatch<any>) {
-  return async function handleGetPhone(id: string) {
+  return async function (id: string) {
     dispatch({ type: GET_PHONE });
     try {
       const response = await getPhone(id);
@@ -53,13 +54,13 @@ function handleGetPhone(dispatch: React.Dispatch<any>) {
 }
 
 function handleClearPhone(dispatch: React.Dispatch<any>) {
-  return async function handleClearPhone() {
+  return async function () {
     dispatch({ type: CLEAR_PHONE });
   };
 }
 
 function handleSignUp(dispatch: React.Dispatch<any>) {
-  return async function handleGetPhones(email: string, password: string) {
+  return async function (email: string, password: string) {
     dispatch({ type: SING_UP });
     try {
       const response = await signUp(email, password);
@@ -71,7 +72,7 @@ function handleSignUp(dispatch: React.Dispatch<any>) {
 }
 
 function handleSignIn(dispatch: React.Dispatch<any>) {
-  return async function handleGetPhone(email: string, password: string) {
+  return async function (email: string, password: string) {
     dispatch({ type: SING_IN });
     try {
       const response = await signIn(email, password);
@@ -82,15 +83,9 @@ function handleSignIn(dispatch: React.Dispatch<any>) {
   };
 }
 
-function handleIsSign(dispatch: React.Dispatch<any>) {
-  return async function handleGetPhone(email: string, password: string) {
-    dispatch({ type: IS_AUTH });
-    try {
-      const response = await isUserAuth();
-      dispatch({ type: IS_AUTH_SUCCESS, payload: response });
-    } catch (e) {
-      dispatch({ type: IS_AUTH_FAIL, payload: e });
-    }
+function handleSignOut(dispatch: React.Dispatch<any>) {
+  return async function () {
+    dispatch({ type: SING_OUT });
   };
 }
 
@@ -100,7 +95,7 @@ const functions = {
   handleClearPhone,
   handleSignUp,
   handleSignIn,
-  handleIsSign,
+  handleSignOut,
 };
 
 export default functions;

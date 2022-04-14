@@ -7,9 +7,9 @@ import {
   GET_PHONE_SUCCESS,
   GET_PHONE_FAIL,
   CLEAR_PHONE,
-  // SING_UP,
-  // SIGN_UP_SUCCESS,
-  // SIGN_UP_FAIL,
+  SING_UP,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAIL,
   // SING_IN,
   // SIGN_IN_FAIL,
   // SIGN_IN_SUCCESS,
@@ -32,6 +32,11 @@ interface iState {
   phoneLoading: boolean;
   phoneError: any;
   lastScanned?: string;
+  token?: string;
+  signUpLoading?: boolean;
+  signUpError?: boolean;
+  signInLoading?: boolean;
+  signInError?: boolean;
 }
 
 // Interface for the actions
