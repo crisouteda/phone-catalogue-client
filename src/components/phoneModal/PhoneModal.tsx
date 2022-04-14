@@ -13,7 +13,7 @@ export const PhoneModal = memo(() => {
   const { name, imageFileName, thumbnailFileName, id, ...rest } = phone;
 
   return (
-    <Modal>
+    <Modal className="phone-modal">
       <ModalContent>
         <Text text={name} large bold isTitle />
         {imageFileName && (

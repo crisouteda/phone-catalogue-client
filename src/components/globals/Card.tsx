@@ -7,16 +7,18 @@ export const Card = memo(
     altImage,
     children,
     handleOnClick,
+    className,
   }: {
     children?: React.ReactNode;
     altImage?: string;
     image?: string;
     handleOnClick?: () => void;
+    className?: string;
   }) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
     return (
-      <StyledCard onClick={handleOnClick}>
+      <StyledCard onClick={handleOnClick} className={className}>
         {image && (
           <img
             className="card-image"

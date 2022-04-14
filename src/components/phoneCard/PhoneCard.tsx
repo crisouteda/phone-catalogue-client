@@ -13,6 +13,7 @@ export const PhoneCard = memo(({ phone }: any) => {
 
   return (
     <Card
+      className="phone-card"
       handleOnClick={() => setSearchParams({ id: phone?.id })}
       image={phone.thumbnailFileName}
       altImage={`phone-${phone.name}`}
