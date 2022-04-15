@@ -9,6 +9,9 @@ import {
   CREATE_PHONE,
   CREATE_PHONE_SUCCESS,
   CREATE_PHONE_FAIL,
+  UPDATE_PHONE,
+  UPDATE_PHONE_SUCCESS,
+  UPDATE_PHONE_FAIL,
   DELETE_PHONE,
   DELETE_PHONE_SUCCESS,
   DELETE_PHONE_FAIL,
@@ -37,6 +40,9 @@ interface iState {
   createPhone?: any;
   createPhoneLoading?: boolean;
   createPhoneError?: any;
+  updatePhone?: any;
+  updatePhoneLoading?: boolean;
+  updatePhoneError?: any;
   deletePhoneLoading?: boolean;
   deletePhoneError?: any;
   lastScanned?: string;
@@ -127,6 +133,24 @@ function reducer(state: iState, action: { type: string; payload: any }) {
         createPhoneLoading: false,
         createPhoneError: action.payload,
       };
+    case UPDATE_PHONE:
+      return {
+        ...state,
+        updatePhoneLoading: true,
+        updatePhoneError: null,
+      };
+    case UPDATE_PHONE_SUCCESS:
+      return {
+        ...state,
+        updatePhone: action.payload,
+        updatePhoneLoading: false,
+      };
+    case UPDATE_PHONE_FAIL:
+      return {
+        ...state,
+        updatePhoneLoading: false,
+        updatePhoneError: action.payload,
+      };
     case DELETE_PHONE:
       return {
         ...state,
@@ -207,8 +231,6 @@ function reducer(state: iState, action: { type: string; payload: any }) {
       return state;
   }
 }
-
-// eslint-disable-next-line consistent-return
 
 const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);

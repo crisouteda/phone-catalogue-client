@@ -14,6 +14,15 @@ import {
   GET_PHONE,
   GET_PHONE_SUCCESS,
   GET_PHONE_FAIL,
+  CREATE_PHONE,
+  CREATE_PHONE_SUCCESS,
+  CREATE_PHONE_FAIL,
+  UPDATE_PHONE,
+  UPDATE_PHONE_SUCCESS,
+  UPDATE_PHONE_FAIL,
+  DELETE_PHONE,
+  DELETE_PHONE_SUCCESS,
+  DELETE_PHONE_FAIL,
   CLEAR_PHONE,
   OPEN_AUTH,
   CLOSE_AUTH,
@@ -24,12 +33,6 @@ import {
   SIGN_IN_FAIL,
   SIGN_IN_SUCCESS,
   LOG_OUT,
-  DELETE_PHONE,
-  DELETE_PHONE_SUCCESS,
-  DELETE_PHONE_FAIL,
-  CREATE_PHONE,
-  CREATE_PHONE_SUCCESS,
-  CREATE_PHONE_FAIL,
 } from "./actionTypes";
 
 import { IPhone } from "../types";
@@ -37,6 +40,7 @@ export interface iActions {
   handleGetPhones: any;
   handleGetPhone: any;
   handleCreatePhone: any;
+  handleUpdatePhone: any;
   handleDeletePhone: any;
   handleClearPhone: any;
   handleOpenAuth: any;
@@ -82,6 +86,18 @@ function handleCreatePhone(dispatch: React.Dispatch<any>) {
   };
 }
 
+function handleUpdatePhone(dispatch: React.Dispatch<any>) {
+  return async function (phone: IPhone) {
+    dispatch({ type: UPDATE_PHONE });
+    try {
+      const response = await createPhone(phone);
+      dispatch({ type: UPDATE_PHONE_SUCCESS, payload: response[0] });
+    } catch (e) {
+      dispatch({ type: UPDATE_PHONE_FAIL, payload: e });
+    }
+  };
+}
+
 function handleDeletePhone(dispatch: React.Dispatch<any>) {
   return async function (id: string) {
     dispatch({ type: DELETE_PHONE });
@@ -93,18 +109,6 @@ function handleDeletePhone(dispatch: React.Dispatch<any>) {
     }
   };
 }
-
-// function handleUpdatePhone(dispatch: React.Dispatch<any>) {
-//   return async function (id: string) {
-//     dispatch({ type: DELETE_PHONE });
-//     try {
-//       const response = await getPhone(id);
-//       dispatch({ type: DELETE_PHONE_SUCCESS, payload: response[0] });
-//     } catch (e) {
-//       dispatch({ type: DELETE_PHONE_FAIL, payload: e });
-//     }
-//   };
-// }
 
 function handleClearPhone(dispatch: React.Dispatch<any>) {
   return async function () {
@@ -158,6 +162,7 @@ const functions = {
   handleGetPhones,
   handleGetPhone,
   handleCreatePhone,
+  handleUpdatePhone,
   handleDeletePhone,
   handleClearPhone,
   handleOpenAuth,
