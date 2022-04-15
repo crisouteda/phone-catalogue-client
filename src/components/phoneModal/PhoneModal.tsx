@@ -1,16 +1,31 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import InnerImageZoom from "react-inner-image-zoom";
-import { Modal, Text } from "../../components";
+import { Modal, Text, PrimaryButton, CustomInput } from "../../components";
 import { ModalContent } from "./PhoneModal.styled";
 import { useContextState } from "../../context";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 
+const requiredKeys = [
+  "screen",
+  "memory",
+  "manufacturer",
+  "processor",
+  "price",
+  "description",
+  "color",
+];
+
 export const PhoneModal = memo(() => {
   const { phone } = useContextState();
+  const [phoneInfo, setPhoneInfo] = useState(phone);
+  const [isEdit, setIsEdit] = useState(false);
+
+  useEffect(() => {
+    setPhoneInfo(phone);
+  }, [phone]);
 
   if (!phone) return null;
-
-  const { name, imageFileName, thumbnailFileName, id, ...rest } = phone;
+  const { name, imageFileName } = phone;
 
   return (
     <Modal className="phone-modal">
@@ -20,15 +35,35 @@ export const PhoneModal = memo(() => {
           <InnerImageZoom src={imageFileName} className="phone-image" />
         )}
         <div className="vertical-list">
-          {Object.keys(rest).map((key: string) =>
-            rest[key] ? (
-              <>
-                <Text text={key} bold key={`key-${key}`} />
-                <Text text={rest[key]} secondary key={`value-${key}`} />
-              </>
-            ) : (
-              <></>
-            )
+          <PrimaryButton
+            text={isEdit ? "Stop Edit" : "Edit information"}
+            handleOnClick={() => setIsEdit(!isEdit)}
+            alignSelf="flex-start"
+          />
+          {requiredKeys.map(
+            (key: string) =>
+              !!phone[key] &&
+              (isEdit ? (
+                <CustomInput
+                  id={key}
+                  label={key}
+                  type="text"
+                  value={phoneInfo && phoneInfo[key] ? phoneInfo[key] : ""}
+                  onChange={(e) =>
+                    setPhoneInfo((c: any) => ({ ...c, [key]: e }))
+                  }
+                />
+              ) : (
+                <>
+                  <Text text={key} bold key={`key-${key}`} />
+                  <Text text={phone[key]} secondary key={`value-${key}`} />
+                </>
+              ))
+          )}
+          {isEdit ? (
+            <PrimaryButton text="Update item" alignSelf="flex-start" />
+          ) : (
+            <PrimaryButton text="Delete item" alignSelf="flex-start" />
           )}
         </div>
       </ModalContent>

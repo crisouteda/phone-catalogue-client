@@ -15,6 +15,7 @@ const OpenModal = keyframes`
 
 export const ModalContent = styled.div`
   margin: 40px;
+  width: 90%;
   height: 100%;
   animation: 0.5s ease-in-out ${OpenModal};
 
