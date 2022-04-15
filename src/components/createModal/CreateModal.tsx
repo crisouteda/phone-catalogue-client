@@ -22,10 +22,7 @@ export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
   const [phoneInfo, setPhoneInfo] = useState(initialObject);
 
   return (
-    <Modal
-      className="phone-modal"
-      // setClose={setClose}
-    >
+    <Modal className="phone-modal" setClose={setClose}>
       <ModalContent>
         {Object.keys(phoneInfo).map((key) => (
           <CustomInput
