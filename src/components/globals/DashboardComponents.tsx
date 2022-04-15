@@ -71,7 +71,11 @@ export const PrimaryButton = memo(
       disabled={disabled}
     >
       {text}
-      <span className="loading">{loading && <LoadingIcon />}</span>
+      {loading && (
+        <span className="loading">
+          <LoadingIcon />
+        </span>
+      )}
     </CustomButton>
   )
 );

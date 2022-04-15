@@ -118,6 +118,6 @@ export const Input = styled.input`
     box-shadow: none;
   }
   &:invalid {
-    outline: 10px solid red;
+    outline: 1px solid ${(props) => props.theme.error};
   }
 `;
