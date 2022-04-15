@@ -7,8 +7,6 @@ export const signUp = async (email: string, password: string) => {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    mode: "no-cors",
-    credentials: "include",
     body: data,
   });
   const response = await request.json();
