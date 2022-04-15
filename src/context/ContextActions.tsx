@@ -97,9 +97,7 @@ function handleSignUp(dispatch: React.Dispatch<any>) {
   return async function (email: string, password: string) {
     dispatch({ type: SING_UP });
     try {
-      console.log({ email, password });
       const response = await signUp(email, password);
-      console.log({ response });
       dispatch({ type: SIGN_UP_SUCCESS, payload: response });
     } catch (e) {
       dispatch({ type: SIGN_UP_FAIL, payload: e });
