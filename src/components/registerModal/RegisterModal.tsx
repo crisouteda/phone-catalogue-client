@@ -2,7 +2,8 @@ import React, { memo, useState } from "react";
 import { Modal, Text } from "../../components";
 import { CustomInput, PrimaryButton } from "../globals";
 import { ModalContent } from "./RegisterModal.styled";
-import { useContextActions } from "../../context";
+import { useContextActions, useContextState } from "../../context";
+import { ErrorLabel } from "../globals/GlobalComponents.styled";
 
 export const RegisterModal = memo(() => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,14 @@ export const RegisterModal = memo(() => {
   const [isSignUp, setIsSignUp] = useState(true);
 
   const { handleSignIn, handleSignUp } = useContextActions();
+  const {
+    openAuth,
+    signInLoading,
+    signUpLoading,
+    signUpError,
+    signInError,
+    isAuth,
+  } = useContextState();
 
   const handleFinalize = () => {
     if (isSignUp) {
@@ -18,6 +27,8 @@ export const RegisterModal = memo(() => {
       handleSignIn(email, password);
     }
   };
+
+  if (!openAuth) return null;
 
   return (
     <Modal>
@@ -40,7 +51,10 @@ export const RegisterModal = memo(() => {
           text="Finalize"
           handleOnClick={handleFinalize}
           disabled={!email || !password}
+          loading={signInLoading || signUpLoading}
         />
+        {signUpError && <ErrorLabel>{JSON.stringify(signUpError)}</ErrorLabel>}
+        {signInError && <ErrorLabel>{JSON.stringify(signInError)}</ErrorLabel>}
         <PrimaryButton
           text={isSignUp ? "Already have an account" : "Back to register"}
           handleOnClick={() => setIsSignUp(!isSignUp)}

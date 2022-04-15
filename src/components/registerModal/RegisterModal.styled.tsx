@@ -24,8 +24,4 @@ export const ModalContent = styled.div`
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-
-  @media (max-width: ${WidthThreshold}) {
-    width: 90%;
-  }
 `;
