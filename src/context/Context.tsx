@@ -1,4 +1,4 @@
-import React, { useReducer, useMemo } from "react";
+import React, { useReducer, useMemo, useEffect } from "react";
 import {
   GET_PHONES,
   GET_PHONES_SUCCESS,
@@ -6,22 +6,22 @@ import {
   GET_PHONE,
   GET_PHONE_SUCCESS,
   GET_PHONE_FAIL,
+  DELETE_PHONE,
+  DELETE_PHONE_SUCCESS,
+  DELETE_PHONE_FAIL,
   CLEAR_PHONE,
+  OPEN_AUTH,
+  CLOSE_AUTH,
   SING_UP,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAIL,
-  // SING_IN,
-  // SIGN_IN_FAIL,
-  // SIGN_IN_SUCCESS,
-  // IS_AUTH,
-  // IS_AUTH_SUCCESS,
-  // IS_AUTH_FAIL,
+  SING_IN,
+  SIGN_IN_FAIL,
+  SIGN_IN_SUCCESS,
+  LOG_OUT,
 } from "./actionTypes";
 import Actions, { iActions } from "./ContextActions";
 import { IPhone } from "../types";
-
-// Interface for the payload
-// export interface IPayload {}
 
 // Interface for the state
 interface iState {
@@ -31,12 +31,16 @@ interface iState {
   phone?: IPhone;
   phoneLoading: boolean;
   phoneError: any;
+  deletePhoneLoading: boolean;
+  deletePhoneError: any;
   lastScanned?: string;
-  token?: string;
-  signUpLoading?: boolean;
-  signUpError?: boolean;
-  signInLoading?: boolean;
-  signInError?: boolean;
+  openAuth: boolean;
+  authToken?: string;
+  isAuth: boolean;
+  signUpLoading: boolean;
+  signUpError: any;
+  signInLoading: boolean;
+  signInError: any;
 }
 
 // Interface for the actions
@@ -51,7 +55,15 @@ const initialState: iState = {
   phone: undefined,
   phoneLoading: false,
   phoneError: null,
+  deletePhoneLoading: false,
+  deletePhoneError: null,
   lastScanned: undefined,
+  openAuth: false,
+  isAuth: false,
+  signUpLoading: false,
+  signUpError: null,
+  signInLoading: false,
+  signInError: null,
 };
 
 function reducer(state: iState, action: { type: string; payload: any }) {
@@ -65,7 +77,7 @@ function reducer(state: iState, action: { type: string; payload: any }) {
     case GET_PHONES_SUCCESS:
       return {
         ...state,
-        phones: [...state.phones, ...action.payload],
+        phones: [...state.phones, ...action.payload.newItems],
         lastScanned: action.payload.lastEvaluatedKey,
         phonesLoading: false,
       };
@@ -93,10 +105,81 @@ function reducer(state: iState, action: { type: string; payload: any }) {
         phoneLoading: false,
         phoneError: action.payload,
       };
+    case DELETE_PHONE:
+      return {
+        ...state,
+        deletePhoneLoading: true,
+        deletePhoneError: null,
+      };
+    case DELETE_PHONE_SUCCESS:
+      return {
+        ...state,
+        deletePhoneLoading: false,
+      };
+    case DELETE_PHONE_FAIL:
+      return {
+        ...state,
+        deletePhoneLoading: false,
+        deletePhoneError: action.payload,
+      };
     case CLEAR_PHONE:
       return {
         ...state,
         phone: undefined,
+      };
+    case OPEN_AUTH:
+      return {
+        ...state,
+        openAuth: true,
+      };
+    case CLOSE_AUTH:
+      return {
+        ...state,
+        openAuth: false,
+      };
+    case SING_UP:
+      return {
+        ...state,
+        signUpLoading: true,
+        signUpError: null,
+      };
+    case SIGN_UP_SUCCESS:
+      return {
+        ...state,
+        authToken: action.payload.token,
+        isAuth: true,
+        signUpLoading: false,
+      };
+    case SIGN_UP_FAIL:
+      return {
+        ...state,
+        signUpLoading: false,
+        signUpError: action.payload,
+      };
+    case SING_IN:
+      return {
+        ...state,
+        signInLoading: true,
+        signInError: null,
+      };
+    case SIGN_IN_SUCCESS:
+      return {
+        ...state,
+        authToken: action.payload.token,
+        isAuth: true,
+        signInLoading: false,
+      };
+    case SIGN_IN_FAIL:
+      return {
+        ...state,
+        signInLoading: false,
+        signInError: action.payload,
+      };
+    case LOG_OUT:
+      return {
+        ...state,
+        authToken: undefined,
+        isAuth: false,
       };
     default:
       return state;
@@ -117,6 +200,10 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
     });
     return dispatchedFunctions;
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("token", state.authToken);
+  }, [state.authToken]);
 
   return (
     <StateContext.Provider value={state}>
