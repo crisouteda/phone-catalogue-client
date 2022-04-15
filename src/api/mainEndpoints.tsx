@@ -17,7 +17,7 @@ export const getPhones = async (items: number, lastScanned?: string) => {
 
 export const createPhone = async (newPhone: IPhone) => {
   const token = localStorage.getItem("token");
-  const data = `email=${JSON.stringify(newPhone)}`;
+  const data = `data=${JSON.stringify(newPhone)}`;
   const request = await fetch(`${Config.apiBase}phones/`, {
     method: "POST",
     headers: {
@@ -45,7 +45,7 @@ export const deletePhone = async (id: number) => {
 
 export const updatePhone = async (updatedPhone: IPhone) => {
   const token = localStorage.getItem("token");
-  const data = `email=${JSON.stringify(updatedPhone)}`;
+  const data = `data=${JSON.stringify(updatedPhone)}`;
   const request = await fetch(`${Config.apiBase}phones/`, {
     method: "PUT",
     headers: {
