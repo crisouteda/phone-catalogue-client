@@ -4,6 +4,7 @@ import {
   getPhone,
   signUp,
   signIn,
+  createPhone,
   // isUserAuth
 } from "../api";
 import {
@@ -26,10 +27,16 @@ import {
   DELETE_PHONE,
   DELETE_PHONE_SUCCESS,
   DELETE_PHONE_FAIL,
+  CREATE_PHONE,
+  CREATE_PHONE_SUCCESS,
+  CREATE_PHONE_FAIL,
 } from "./actionTypes";
+
+import { IPhone } from "../types";
 export interface iActions {
   handleGetPhones: any;
   handleGetPhone: any;
+  handleCreatePhone: any;
   handleDeletePhone: any;
   handleClearPhone: any;
   handleOpenAuth: any;
@@ -63,6 +70,18 @@ function handleGetPhone(dispatch: React.Dispatch<any>) {
   };
 }
 
+function handleCreatePhone(dispatch: React.Dispatch<any>) {
+  return async function (newPhone: IPhone) {
+    dispatch({ type: CREATE_PHONE });
+    try {
+      const response = await createPhone(newPhone);
+      dispatch({ type: CREATE_PHONE_SUCCESS, payload: response[0] });
+    } catch (e) {
+      dispatch({ type: CREATE_PHONE_FAIL, payload: e });
+    }
+  };
+}
+
 function handleDeletePhone(dispatch: React.Dispatch<any>) {
   return async function (id: string) {
     dispatch({ type: DELETE_PHONE });
@@ -74,6 +93,18 @@ function handleDeletePhone(dispatch: React.Dispatch<any>) {
     }
   };
 }
+
+// function handleUpdatePhone(dispatch: React.Dispatch<any>) {
+//   return async function (id: string) {
+//     dispatch({ type: DELETE_PHONE });
+//     try {
+//       const response = await getPhone(id);
+//       dispatch({ type: DELETE_PHONE_SUCCESS, payload: response[0] });
+//     } catch (e) {
+//       dispatch({ type: DELETE_PHONE_FAIL, payload: e });
+//     }
+//   };
+// }
 
 function handleClearPhone(dispatch: React.Dispatch<any>) {
   return async function () {
@@ -126,6 +157,7 @@ function handleLogOut(dispatch: React.Dispatch<any>) {
 const functions = {
   handleGetPhones,
   handleGetPhone,
+  handleCreatePhone,
   handleDeletePhone,
   handleClearPhone,
   handleOpenAuth,

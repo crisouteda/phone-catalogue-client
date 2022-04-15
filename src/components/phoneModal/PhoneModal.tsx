@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from "react";
 import InnerImageZoom from "react-inner-image-zoom";
 import { Modal, Text, PrimaryButton, CustomInput } from "../../components";
 import { ModalContent } from "./PhoneModal.styled";
-import { useContextState } from "../../context";
+import { useContextState, useContextActions } from "../../context";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 
 const requiredKeys = [
@@ -17,6 +17,10 @@ const requiredKeys = [
 
 export const PhoneModal = memo(() => {
   const { phone } = useContextState();
+  const {
+    // handleUpdatePhone,
+    handleDeletePhone,
+  } = useContextActions();
   const [phoneInfo, setPhoneInfo] = useState(phone);
   const [isEdit, setIsEdit] = useState(false);
 
@@ -61,9 +65,17 @@ export const PhoneModal = memo(() => {
               ))
           )}
           {isEdit ? (
-            <PrimaryButton text="Update item" alignSelf="flex-start" />
+            <PrimaryButton
+              text="Update item"
+              alignSelf="flex-start"
+              // handleOnClick={() => handleUpdatePhone(phoneInfo)}
+            />
           ) : (
-            <PrimaryButton text="Delete item" alignSelf="flex-start" />
+            <PrimaryButton
+              text="Delete item"
+              alignSelf="flex-start"
+              handleOnClick={() => handleDeletePhone(phone.id)}
+            />
           )}
         </div>
       </ModalContent>

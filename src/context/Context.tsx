@@ -6,6 +6,9 @@ import {
   GET_PHONE,
   GET_PHONE_SUCCESS,
   GET_PHONE_FAIL,
+  CREATE_PHONE,
+  CREATE_PHONE_SUCCESS,
+  CREATE_PHONE_FAIL,
   DELETE_PHONE,
   DELETE_PHONE_SUCCESS,
   DELETE_PHONE_FAIL,
@@ -31,8 +34,11 @@ interface iState {
   phone?: IPhone;
   phoneLoading: boolean;
   phoneError: any;
-  deletePhoneLoading: boolean;
-  deletePhoneError: any;
+  createPhone?: any;
+  createPhoneLoading?: boolean;
+  createPhoneError?: any;
+  deletePhoneLoading?: boolean;
+  deletePhoneError?: any;
   lastScanned?: string;
   openAuth: boolean;
   authToken?: string;
@@ -55,8 +61,6 @@ const initialState: iState = {
   phone: undefined,
   phoneLoading: false,
   phoneError: null,
-  deletePhoneLoading: false,
-  deletePhoneError: null,
   lastScanned: undefined,
   openAuth: false,
   isAuth: false,
@@ -104,6 +108,24 @@ function reducer(state: iState, action: { type: string; payload: any }) {
         ...state,
         phoneLoading: false,
         phoneError: action.payload,
+      };
+    case CREATE_PHONE:
+      return {
+        ...state,
+        createPhoneLoading: true,
+        createPhoneError: null,
+      };
+    case CREATE_PHONE_SUCCESS:
+      return {
+        ...state,
+        createPhone: action.payload,
+        createPhoneLoading: false,
+      };
+    case CREATE_PHONE_FAIL:
+      return {
+        ...state,
+        createPhoneLoading: false,
+        createPhoneError: action.payload,
       };
     case DELETE_PHONE:
       return {
