@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, memo, lazy, Suspense } from "react";
+import React, { useState, useEffect, memo, lazy, Suspense } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router-dom";
 import { HeaderTitle, ItemsDisplayed } from "../constants";
@@ -10,19 +10,27 @@ import {
   Modal,
   LoadingCards,
   RegisterModal,
+  PrimaryButton,
 } from "../components";
 import { useContextActions } from "../context";
 import { useContextState } from "../context";
 import { PageLayout } from "./Page.style";
+import CreateModal from "../components/createModal";
 
 const PhoneModal = lazy(() => import("../components/phoneModal"));
 const PhoneCard = lazy(() => import("../components/phoneCard"));
 
 export default memo(function Dashboard() {
   const location: any = useLocation();
-  const { handleGetPhones, handleGetPhone, handleClearPhone } =
-    useContextActions();
-  const { phones, lastScanned } = useContextState();
+  const {
+    handleGetPhones,
+    handleGetPhone,
+    handleClearPhone,
+    handleOpenAuth,
+    handleCloseAuth,
+  } = useContextActions();
+  const { phones, lastScanned, isAuth } = useContextState();
+  const [openCreate, setOpenCreate] = useState(false);
 
   useEffect(() => {
     const url = new URLSearchParams(location.search);
@@ -34,9 +42,9 @@ export default memo(function Dashboard() {
       handleClearPhone();
     }
     if (register && JSON.parse(register)) {
-      //   handleRegister();
-      // } else {
-      //   handleClearRegister();
+      handleOpenAuth();
+    } else {
+      handleCloseAuth();
     }
   }, [location]);
 
@@ -52,6 +60,10 @@ export default memo(function Dashboard() {
     <>
       <Header title={HeaderTitle} />
       <PageLayout>
+        <PrimaryButton
+          text="Add phone"
+          handleOnClick={() => setOpenCreate(true)}
+        />
         {phones?.length ? (
           <InfiniteScroll
             dataLength={phones?.length}
@@ -73,6 +85,7 @@ export default memo(function Dashboard() {
       </PageLayout>
       <Suspense fallback={<Modal />}>
         <PhoneModal />
+        {openCreate && <CreateModal setClose={() => setOpenCreate(false)} />}
         <RegisterModal />
       </Suspense>
     </>
