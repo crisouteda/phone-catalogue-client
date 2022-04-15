@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { LoadingIcon } from "../../assets";
 
 import {
   CustomText,
@@ -56,11 +57,13 @@ export const PrimaryButton = memo(
     handleOnClick,
     alignSelf,
     disabled,
+    loading,
   }: {
     text: string;
     handleOnClick?: () => void;
     alignSelf?: string;
     disabled?: boolean;
+    loading?: boolean;
   }) => (
     <CustomButton
       onClick={handleOnClick}
@@ -68,6 +71,7 @@ export const PrimaryButton = memo(
       disabled={disabled}
     >
       {text}
+      <span className="loading">{loading && <LoadingIcon />}</span>
     </CustomButton>
   )
 );
@@ -79,6 +83,7 @@ export const CustomInput = ({
   id,
   onChange,
   error,
+  pattern,
 }: {
   type?: string;
   value?: string;
@@ -86,6 +91,7 @@ export const CustomInput = ({
   id?: string;
   onChange: (e: string) => void;
   error?: string;
+  pattern?: string;
 }) => {
   if (!id) throw new Error("specify an id for each input");
   return (
@@ -96,6 +102,7 @@ export const CustomInput = ({
         type={type}
         value={!value ? "" : value}
         onChange={(e: any) => onChange(e.target.value)}
+        pattern={pattern}
       />
       {error && (
         <ErrorLabel data-testid={id + "_error"} htmlFor={id}>

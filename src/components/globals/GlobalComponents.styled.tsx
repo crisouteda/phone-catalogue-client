@@ -49,14 +49,18 @@ export const CustomButton = styled.button<CustomButtonProps>`
   border: 0;
   border-radius: 8px;
   cursor: pointer;
-
+  padding: 8px 20px;
+  margin: 20px 0px;
 
   color: ${(props) => props.theme.bg};
   font-size: 1.4rem;
 
-  padding: 8px 20px;
   align-self: ${(props) => props.alignSelf && props.alignSelf};
-  margin: 0px 20px;
+  display: flex;
+
+  .loading {
+    margin-left: 12px;
+  }
 
   &:disabled {
     opacity: 0.4;
@@ -103,7 +107,7 @@ export const Input = styled.input`
   font-size: 14px;
   line-height: 24px;
   transition: all 0.1s ease-in-out;
-  margin: 10px 0px 0px;
+  margin: 10px 0;
   &::placeholder {
     color: ${(props) => props.theme.primary};
   }
