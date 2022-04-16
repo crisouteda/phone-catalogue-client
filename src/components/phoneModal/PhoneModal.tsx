@@ -12,6 +12,7 @@ import { ModalContent } from "./PhoneModal.styled";
 import { useContextState, useContextActions } from "../../context";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
 import { CustomLoadingDots } from "../globals";
+import { isUserAuth } from "../../api";
 
 const requiredKeys = [
   "screen",
@@ -25,6 +26,7 @@ const requiredKeys = [
 
 export const PhoneModal = memo(() => {
   const {
+    isAuth,
     phone,
     deletePhoneLoading,
     deletePhoneError,
@@ -77,11 +79,13 @@ export const PhoneModal = memo(() => {
           <InnerImageZoom src={imageFileName} className="phone-image" />
         )}
         <div className="vertical-list">
-          <PrimaryButton
-            text={isEdit ? "Stop Edit" : "Edit information"}
-            handleOnClick={() => setIsEdit(!isEdit)}
-            alignSelf="flex-start"
-          />
+          {isAuth && (
+            <PrimaryButton
+              text={isEdit ? "Stop Edit" : "Edit information"}
+              handleOnClick={() => setIsEdit(!isEdit)}
+              alignSelf="flex-start"
+            />
+          )}
           {requiredKeys.map(
             (key: string) =>
               !!phone[key] &&
@@ -108,7 +112,7 @@ export const PhoneModal = memo(() => {
                 </>
               ))
           )}
-          {isEdit && (
+          {isAuth && isEdit && (
             <>
               <PrimaryButton
                 text="Update item"
@@ -117,12 +121,14 @@ export const PhoneModal = memo(() => {
                 handleOnClick={() => handleUpdatePhone(phoneInfo)}
               />
               {updatePhoneError && (
-                <ErrorLabel>{JSON.stringify(updatePhoneError)}</ErrorLabel>
+                <ErrorLabel>
+                  {updatePhoneError?.message || "Error updating the item"}
+                </ErrorLabel>
               )}
             </>
           )}
 
-          {!isEdit && (
+          {isAuth && !isEdit && (
             <>
               <PrimaryButton
                 text="Delete item"
@@ -131,7 +137,9 @@ export const PhoneModal = memo(() => {
                 handleOnClick={handleDelete}
               />
               {deletePhoneError && (
-                <ErrorLabel>{JSON.stringify(deletePhoneError)}</ErrorLabel>
+                <ErrorLabel>
+                  {deletePhoneError?.message || "Error deleting the item"}
+                </ErrorLabel>
               )}
             </>
           )}
