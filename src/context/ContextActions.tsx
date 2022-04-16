@@ -5,6 +5,8 @@ import {
   signUp,
   signIn,
   createPhone,
+  updatePhone,
+  deletePhone,
   // isUserAuth
 } from "../api";
 import {
@@ -79,7 +81,7 @@ function handleCreatePhone(dispatch: React.Dispatch<any>) {
     dispatch({ type: CREATE_PHONE });
     try {
       const response = await createPhone(newPhone);
-      dispatch({ type: CREATE_PHONE_SUCCESS, payload: response[0] });
+      dispatch({ type: CREATE_PHONE_SUCCESS, payload: response });
     } catch (e) {
       dispatch({ type: CREATE_PHONE_FAIL, payload: e });
     }
@@ -90,7 +92,7 @@ function handleUpdatePhone(dispatch: React.Dispatch<any>) {
   return async function (phone: IPhone) {
     dispatch({ type: UPDATE_PHONE });
     try {
-      const response = await createPhone(phone);
+      const response = await updatePhone(phone);
       dispatch({ type: UPDATE_PHONE_SUCCESS, payload: response[0] });
     } catch (e) {
       dispatch({ type: UPDATE_PHONE_FAIL, payload: e });
@@ -102,7 +104,7 @@ function handleDeletePhone(dispatch: React.Dispatch<any>) {
   return async function (id: string) {
     dispatch({ type: DELETE_PHONE });
     try {
-      const response = await getPhone(id);
+      const response = await deletePhone(id);
       dispatch({ type: DELETE_PHONE_SUCCESS, payload: response[0] });
     } catch (e) {
       dispatch({ type: DELETE_PHONE_FAIL, payload: e });
