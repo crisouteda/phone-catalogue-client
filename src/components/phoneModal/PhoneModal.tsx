@@ -11,6 +11,7 @@ import {
 import { ModalContent } from "./PhoneModal.styled";
 import { useContextState, useContextActions } from "../../context";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
+import { CustomLoadingDots } from "../globals";
 
 const requiredKeys = [
   "screen",
@@ -64,6 +65,10 @@ export const PhoneModal = memo(() => {
     setSearchParams({});
   };
 
+  const handleDelete = () => {
+    setSearchParams({});
+    handleDeletePhone(phone.id);
+  };
   return (
     <Modal className="phone-modal" setClose={handleClose}>
       <ModalContent>
@@ -94,7 +99,12 @@ export const PhoneModal = memo(() => {
               ) : (
                 <>
                   <Text text={key} bold key={`key-${key}`} />
-                  <Text text={phone[key]} secondary key={`value-${key}`} />
+                  <Text
+                    loading={updatePhoneLoading}
+                    text={phone[key]}
+                    secondary
+                    key={`value-${key}`}
+                  />
                 </>
               ))
           )}
@@ -106,7 +116,9 @@ export const PhoneModal = memo(() => {
                 loading={updatePhoneLoading}
                 handleOnClick={() => handleUpdatePhone(phoneInfo)}
               />
-              {updatePhoneError && <ErrorLabel>{updatePhoneError}</ErrorLabel>}
+              {updatePhoneError && (
+                <ErrorLabel>{JSON.stringify(updatePhoneError)}</ErrorLabel>
+              )}
             </>
           )}
 
@@ -116,9 +128,11 @@ export const PhoneModal = memo(() => {
                 text="Delete item"
                 alignSelf="flex-start"
                 loading={deletePhoneLoading}
-                handleOnClick={() => handleDeletePhone(phone.id)}
+                handleOnClick={handleDelete}
               />
-              {deletePhoneError && <ErrorLabel>{deletePhoneError}</ErrorLabel>}
+              {deletePhoneError && (
+                <ErrorLabel>{JSON.stringify(deletePhoneError)}</ErrorLabel>
+              )}
             </>
           )}
         </div>

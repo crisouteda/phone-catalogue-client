@@ -9,6 +9,7 @@ import {
   ErrorLabel,
   Input,
   InputBox,
+  CustomLoadingDots,
 } from "./GlobalComponents.styled";
 
 export const Text = memo(
@@ -18,6 +19,7 @@ export const Text = memo(
     bold = false,
     secondary = false,
     isTitle = false,
+    loading = false,
     ...rest
   }: {
     text?: string;
@@ -26,6 +28,7 @@ export const Text = memo(
     secondary?: boolean;
     isTitle?: boolean;
     rest?: any;
+    loading?: boolean;
   }) => {
     return (
       <CustomText
@@ -35,7 +38,7 @@ export const Text = memo(
         isTitle={isTitle}
         {...rest}
       >
-        {text}
+        {loading ? <LoadingDots /> : text}
       </CustomText>
     );
   }
@@ -116,3 +119,11 @@ export const CustomInput = ({
     </InputBox>
   );
 };
+
+export const LoadingDots = () => (
+  <CustomLoadingDots>
+    <div className="dot1" />
+    <div className="dot2" />
+    <div className="dot3" />
+  </CustomLoadingDots>
+);

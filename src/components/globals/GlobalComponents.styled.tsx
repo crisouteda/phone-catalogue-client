@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface CustomTextProps {
   readonly bold: boolean;
@@ -119,5 +119,41 @@ export const Input = styled.input`
   }
   &:invalid {
     outline: 1px solid ${(props) => props.theme.error};
+  }
+`;
+
+const Jump = keyframes`
+0%, 80%, 100% { 
+  -webkit-transform: scale(0);
+  transform: scale(0);
+} 40% { 
+  -webkit-transform: scale(2.0);
+  transform: scale(2.0);
+}
+`;
+
+export const CustomLoadingDots = styled.div`
+  display: flex;
+  .dot1,
+  .dot2,
+  .dot3 {
+    background: #fff;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin: 10px;
+  }
+
+  .dot1 {
+    animation: ${Jump} 1.6s -0.32s linear infinite;
+    background: ${(props) => props.theme.primary};
+  }
+  .dot2 {
+    animation: ${Jump} 1.6s -0.16s linear infinite;
+    background: ${(props) => props.theme.success};
+  }
+  .dot3 {
+    animation: ${Jump} 1.6s linear infinite;
+    background: ${(props) => props.theme.secondary};
   }
 `;
