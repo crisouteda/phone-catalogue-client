@@ -29,7 +29,7 @@ export default memo(function Dashboard() {
     handleOpenAuth,
     handleCloseAuth,
   } = useContextActions();
-  const { phones, lastScanned, isAuth } = useContextState();
+  const { phones, phonesLimitReached, lastScanned, isAuth } = useContextState();
   const [openCreate, setOpenCreate] = useState(false);
 
   useEffect(() => {
@@ -56,19 +56,23 @@ export default memo(function Dashboard() {
     fetchMoreData();
   }, []);
 
+  const hasMore = !phonesLimitReached || lastScanned === undefined;
+
   return (
     <>
       <Header title={HeaderTitle} />
       <PageLayout>
-        <PrimaryButton
-          text="Add phone"
-          handleOnClick={() => setOpenCreate(true)}
-        />
+        {isAuth && (
+          <PrimaryButton
+            text="Add phone"
+            handleOnClick={() => setOpenCreate(true)}
+          />
+        )}
         {phones?.length ? (
           <InfiniteScroll
-            dataLength={phones?.length}
+            dataLength={phones.length}
             next={fetchMoreData}
-            hasMore={!!lastScanned}
+            hasMore={hasMore}
             loader={<LoadingCards />}
           >
             <Flex>
