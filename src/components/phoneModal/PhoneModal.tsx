@@ -11,8 +11,6 @@ import {
 import { ModalContent } from "./PhoneModal.styled";
 import { useContextState, useContextActions } from "../../context";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
-import { CustomLoadingDots } from "../globals";
-import { isUserAuth } from "../../api";
 
 const requiredKeys = [
   "screen",
