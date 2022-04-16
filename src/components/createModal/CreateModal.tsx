@@ -18,14 +18,11 @@ const initialObject: IPhone = {
   id: "",
 };
 
-const required = ["name", "thumbnailFileName"];
+const required = ["name", "thumbnailFileName", "price"];
 
 export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
-  const [phoneInfo, setPhoneInfo] = useState(initialObject);
-  const {
-    // createPhone
-  } = useContextActions();
-  // const handleOnClick = () => createPhone(phoneInfo);
+  const [phoneInfo, setPhoneInfo] = useState<IPhone>(initialObject);
+  const { handleCreatePhone } = useContextActions();
 
   return (
     <Modal className="phone-modal" setClose={setClose}>
@@ -42,8 +39,12 @@ export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
         ))}
         <PrimaryButton
           text="Create Item"
-          disabled={!phoneInfo["name"] || !phoneInfo["thumbnailFileName"]}
-          //  onClick={handleOnClick}
+          disabled={
+            !phoneInfo["name"] ||
+            !phoneInfo["thumbnailFileName"] ||
+            !phoneInfo["price"]
+          }
+          handleOnClick={() => handleCreatePhone(phoneInfo)}
         />
       </ModalContent>
     </Modal>

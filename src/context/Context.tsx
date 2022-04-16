@@ -160,6 +160,7 @@ function reducer(state: iState, action: { type: string; payload: any }) {
     case DELETE_PHONE_SUCCESS:
       return {
         ...state,
+        phone: undefined,
         deletePhoneLoading: false,
       };
     case DELETE_PHONE_FAIL:
@@ -246,7 +247,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("token", state.authToken);
+    if (state.authToken) localStorage.setItem("token", state.authToken);
   }, [state.authToken]);
 
   return (

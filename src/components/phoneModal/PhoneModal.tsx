@@ -17,10 +17,7 @@ const requiredKeys = [
 
 export const PhoneModal = memo(() => {
   const { phone } = useContextState();
-  const {
-    // handleUpdatePhone,
-    handleDeletePhone,
-  } = useContextActions();
+  const { handleUpdatePhone, handleDeletePhone } = useContextActions();
   const [phoneInfo, setPhoneInfo] = useState(phone);
   const [isEdit, setIsEdit] = useState(false);
 
@@ -52,6 +49,7 @@ export const PhoneModal = memo(() => {
                   id={key}
                   label={key}
                   type="text"
+                  key={key}
                   value={phoneInfo && phoneInfo[key] ? phoneInfo[key] : ""}
                   onChange={(e) =>
                     setPhoneInfo((c: any) => ({ ...c, [key]: e }))
@@ -68,7 +66,7 @@ export const PhoneModal = memo(() => {
             <PrimaryButton
               text="Update item"
               alignSelf="flex-start"
-              // handleOnClick={() => handleUpdatePhone(phoneInfo)}
+              handleOnClick={() => handleUpdatePhone(phoneInfo)}
             />
           ) : (
             <PrimaryButton
