@@ -17,27 +17,27 @@ export const getPhones = async (items: number, lastScanned?: string) => {
 
 export const createPhone = async (newPhone: IPhone) => {
   const token = localStorage.getItem("token");
-  const data = `data=${JSON.stringify(newPhone)}`;
+  const body = `data=${JSON.stringify(newPhone)}&token=${token}`;
   const request = await fetch(`${Config.apiBase}phones/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authentication: `Bearer ${token}`,
     },
-    body: data,
+    body,
   });
   const response = await request.json();
   return response;
 };
 
-export const deletePhone = async (id: number) => {
+export const deletePhone = async (id: string) => {
   const token = localStorage.getItem("token");
-  const request = await fetch(`${Config.apiBase}phones/${id}`, {
-    method: "DELETE",
+  const body = `id=${id}&token=${token}`;
+  const request = await fetch(`${Config.apiBase}phones/delete`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authentication: `Bearer ${token}`,
     },
+    body,
   });
   const response = await request.json();
   return response;
@@ -45,14 +45,13 @@ export const deletePhone = async (id: number) => {
 
 export const updatePhone = async (updatedPhone: IPhone) => {
   const token = localStorage.getItem("token");
-  const data = `data=${JSON.stringify(updatedPhone)}`;
-  const request = await fetch(`${Config.apiBase}phones/`, {
-    method: "PUT",
+  const body = `data=${JSON.stringify(updatedPhone)}&token=${token}`;
+  const request = await fetch(`${Config.apiBase}phones/put`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authentication: `Bearer ${token}`,
     },
-    body: data,
+    body,
   });
   const response = await request.json();
   return response;
