@@ -14,7 +14,7 @@ export const Modal = memo(
   }) => {
     return (
       <ModalWrapper className={className}>
-        <div className="modal-page-background" />
+        <div className="modal-page-background" onClick={setClose} />
         <div className="modal-content">
           <button className="close-button" onClick={setClose}>
             <CloseIcon />
