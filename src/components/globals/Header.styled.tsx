@@ -7,6 +7,8 @@ export const StyledHeader = styled.div`
   padding-left: 20px;
   padding-right: 20px;
 
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +21,7 @@ export const StyledHeader = styled.div`
   font-weight: 700;
 
   .title {
-    margin-bottom: -32px;
+    margin-bottom: -60px;
   }
 
   @media (max-width: ${WidthThreshold}) {
