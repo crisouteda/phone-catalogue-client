@@ -4,6 +4,9 @@ import { IPhone } from "../types";
 export const getPhone = async (id: string) => {
   const request = await fetch(`${Config.apiBase}phones/${id}`);
   const response = await request.json();
+  if (request.status >= 400 && request.status < 600) {
+    throw new Error(response);
+  }
   return response;
 };
 
@@ -12,6 +15,9 @@ export const getPhones = async (items: number, lastScanned?: string) => {
     `${Config.apiBase}phones/pagination/${items}/${lastScanned}`
   );
   const response = await request.json();
+  if (request.status >= 400 && request.status < 600) {
+    throw new Error(response);
+  }
   return response;
 };
 
@@ -26,6 +32,9 @@ export const createPhone = async (newPhone: IPhone) => {
     body,
   });
   const response = await request.json();
+  if (request.status >= 400 && request.status < 600) {
+    throw new Error(response);
+  }
   return response;
 };
 
@@ -40,6 +49,9 @@ export const deletePhone = async (id: string) => {
     body,
   });
   const response = await request.json();
+  if (request.status >= 400 && request.status < 600) {
+    throw new Error(response);
+  }
   return response;
 };
 
@@ -54,5 +66,8 @@ export const updatePhone = async (updatedPhone: IPhone) => {
     body,
   });
   const response = await request.json();
+  if (request.status >= 400 && request.status < 600) {
+    throw new Error(response);
+  }
   return response;
 };

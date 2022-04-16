@@ -1,4 +1,5 @@
 import React, { useReducer, useMemo, useEffect } from "react";
+
 import {
   GET_PHONES,
   GET_PHONES_SUCCESS,
@@ -34,6 +35,7 @@ interface iState {
   phones: IPhone[];
   phonesLoading: boolean;
   phonesError: any;
+  phonesLimitReached: boolean;
   phone?: IPhone;
   phoneLoading: boolean;
   phoneError: any;
@@ -64,6 +66,7 @@ const initialState: iState = {
   phones: [],
   phonesLoading: false,
   phonesError: null,
+  phonesLimitReached: false,
   phone: undefined,
   phoneLoading: false,
   phoneError: null,
@@ -90,16 +93,19 @@ function reducer(state: iState, action: { type: string; payload: any }) {
         phones: [...state.phones, ...action.payload.newItems],
         lastScanned: action.payload.lastEvaluatedKey,
         phonesLoading: false,
+        phonesLimitReached: action.payload.limitReached,
       };
     case GET_PHONES_FAIL:
       return {
         ...state,
         phonesLoading: false,
         phonesError: action.payload,
+        phonesLimitReached: true,
       };
     case GET_PHONE:
       return {
         ...state,
+        createPhone: null,
         phoneLoading: true,
         phoneErorr: null,
       };
@@ -142,7 +148,7 @@ function reducer(state: iState, action: { type: string; payload: any }) {
     case UPDATE_PHONE_SUCCESS:
       return {
         ...state,
-        updatePhone: action.payload,
+        updatePhone: action.payload.data,
         updatePhoneLoading: false,
       };
     case UPDATE_PHONE_FAIL:

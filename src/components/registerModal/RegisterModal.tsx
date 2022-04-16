@@ -1,4 +1,6 @@
 import React, { memo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import { Modal, Text } from "../../components";
 import { CustomInput, PrimaryButton } from "../globals";
 import { ModalContent } from "./RegisterModal.styled";
@@ -6,6 +8,8 @@ import { useContextActions, useContextState } from "../../context";
 import { ErrorLabel } from "../globals/GlobalComponents.styled";
 
 export const RegisterModal = memo(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setSearchParams] = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(true);
@@ -28,10 +32,10 @@ export const RegisterModal = memo(() => {
     }
   };
 
-  if (!openAuth) return null;
+  if (!openAuth || isAuth) return null;
 
   return (
-    <Modal>
+    <Modal setClose={() => setSearchParams({})}>
       <ModalContent>
         <Text large bold text={isSignUp ? "Sign up" : "Log in"} />
         <CustomInput

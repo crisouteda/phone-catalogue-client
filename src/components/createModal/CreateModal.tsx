@@ -1,9 +1,10 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Modal, CustomInput } from "..";
 import { ModalContent } from "./CreateModal.styled";
 import { IPhone } from "../../types";
-import { PrimaryButton } from "../globals";
-import { useContextActions } from "../../context";
+import { PrimaryButton, ErrorLabel } from "../globals";
+import { useContextActions, useContextState } from "../../context";
 
 const initialObject: IPhone = {
   name: "",
@@ -21,8 +22,20 @@ const initialObject: IPhone = {
 const required = ["name", "thumbnailFileName", "price"];
 
 export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setSearchParams] = useSearchParams();
   const [phoneInfo, setPhoneInfo] = useState<IPhone>(initialObject);
   const { handleCreatePhone } = useContextActions();
+  const { createPhone, createPhoneLoading, createPhoneError } =
+    useContextState();
+
+  useEffect(() => {
+    if (createPhone) {
+      setClose();
+      setSearchParams({ id: createPhone?.id });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [createPhone]);
 
   return (
     <Modal className="phone-modal" setClose={setClose}>
@@ -39,6 +52,7 @@ export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
         ))}
         <PrimaryButton
           text="Create Item"
+          loading={createPhoneLoading}
           disabled={
             !phoneInfo["name"] ||
             !phoneInfo["thumbnailFileName"] ||
@@ -46,6 +60,11 @@ export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
           }
           handleOnClick={() => handleCreatePhone(phoneInfo)}
         />
+        {createPhoneError && (
+          <ErrorLabel>
+            {createPhoneError?.message || "Error creating the item"}
+          </ErrorLabel>
+        )}
       </ModalContent>
     </Modal>
   );

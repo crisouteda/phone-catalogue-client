@@ -10,6 +10,9 @@ export const signUp = async (email: string, password: string) => {
     body: data,
   });
   const response = await request.json();
+  if (request.status >= 400 && request.status < 600) {
+    throw new Error(response);
+  }
   return response;
 };
 
@@ -23,11 +26,17 @@ export const signIn = async (email: string, password: string) => {
     body: data,
   });
   const response = await request.json();
+  if (request.status >= 400 && request.status < 600) {
+    throw new Error(response);
+  }
   return response;
 };
 
 export const isUserAuth = async () => {
   const request = await fetch(`${Config.apiBase}auth/isUserAuth`);
   const response = await request.json();
+  if (request.status >= 400 && request.status < 600) {
+    throw new Error(response);
+  }
   return response;
 };

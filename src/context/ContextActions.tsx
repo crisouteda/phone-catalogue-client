@@ -50,6 +50,7 @@ export interface iActions {
   handleSignUp: any;
   handleSignIn: any;
   handleLogOut: any;
+  handleGetAvailablePhones: any;
 }
 
 function handleGetPhones(dispatch: React.Dispatch<any>) {
@@ -93,7 +94,7 @@ function handleUpdatePhone(dispatch: React.Dispatch<any>) {
     dispatch({ type: UPDATE_PHONE });
     try {
       const response = await updatePhone(phone);
-      dispatch({ type: UPDATE_PHONE_SUCCESS, payload: response[0] });
+      dispatch({ type: UPDATE_PHONE_SUCCESS, payload: response });
     } catch (e) {
       dispatch({ type: UPDATE_PHONE_FAIL, payload: e });
     }
