@@ -1,9 +1,8 @@
 import React, { memo, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Modal, CustomInput } from "..";
 import { ModalContent } from "./CreateModal.styled";
 import { IPhone } from "../../types";
-import { PrimaryButton, ErrorLabel } from "../globals";
+import { PrimaryButton, ErrorText, Modal, CustomInput } from "../globals";
 import { useContextActions, useContextState } from "../../context";
 
 const initialObject: IPhone = {
@@ -60,11 +59,10 @@ export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
           }
           handleOnClick={() => handleCreatePhone(phoneInfo)}
         />
-        {createPhoneError && (
-          <ErrorLabel>
-            {createPhoneError?.message || "Error creating the item"}
-          </ErrorLabel>
-        )}
+        <ErrorText
+          text={createPhoneError?.message || "Error creating the item"}
+          condition={createPhoneError}
+        />
       </ModalContent>
     </Modal>
   );

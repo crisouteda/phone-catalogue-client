@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { LoadingIcon } from "../../assets";
+import { ErrorIcon, LoadingIcon } from "../../assets";
 
 import {
   CustomText,
@@ -40,6 +40,18 @@ export const Text = memo(
       >
         {loading ? <LoadingDots /> : text}
       </CustomText>
+    );
+  }
+);
+
+export const ErrorText = memo(
+  ({ text, condition }: { text?: string; condition?: boolean }) => {
+    if (!condition) return null;
+    return (
+      <ErrorLabel>
+        <ErrorIcon />
+        {text}
+      </ErrorLabel>
     );
   }
 );
