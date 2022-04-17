@@ -1,23 +1,31 @@
 # Phone Catalogue - Client side
 
-Frontend for phone catalogue management. Backend can be found in the following repository: [phone-catalogue-server](https://github.com/crisouteda/phone-catalogue-server)
+### Frontend for phone catalogue management.
 
-## Starting 🚀
+The catalogue retrieves a list of phones from a phones database and allows CRUD operations for authenticated users.
+
+Backend can be found in the following repository: [phone-catalogue-server](https://github.com/crisouteda/phone-catalogue-server)
+
+## Live demo
+
+The app is serve in two environments:
+
+[staging app](https://phone-catalogue-app-staging.netlify.app)
+
+[prod app](https://phone-catalogue-app.netlify.app/)
+
+## 🚀 Starting
 
 These instructions will allow you to get a working copy of the project on your local machine for development and testing purposes.
 
-### Prerequisites 📋
+### 📋 Prerequisites
 
-What do you need to install the software?
+You need to have installed Node JS. Developed with v17.9.0.
 
-```
-You need to have installed Node JS
-```
+### 🔧 Installation
 
-### Installation 🔧
-
-1. Download this repository in zip or clone the repository on your device (if you clone the repository, note that you will not be able to add your commits).
-2. Open a terminal in the root folder of your repository.
+1. Download this repository as zip or clone the repository on your device (if you clone the repository, note that you will not be able to add your commits).
+2. Open a terminal in the root directory of the repository.
 3. Install the local dependencies by running the command in the terminal:
 
 ```
@@ -27,15 +35,15 @@ npm install
 or
 
 ```
-yarn install
+yarn
 ```
 
-### Starting the project ⚙️
+### ⚙️ Starting the project
 
-Once you have done the previous step, **start the project every time you program**. To do this, run the command:
+To serve the app locally run:
 
 ```
-npm start
+npm run start
 ```
 
 or
@@ -48,20 +56,22 @@ yarn start
 
 [Netlify](https://www.netlify.com/) is used as a Continuous Integration and Continuous Deployment (CI/CD) tool.
 
-[staging app](https://phone-catalogue-app-staging.netlify.app)
+**Staging environment**:
 
-Push the changes to the `main` branch in Github. Netlify will run
+Push the changes to the `main` branch in Github.
 
-[prod app](https://phone-catalogue-app.netlify.app/)
+**Prod environment**:
 
-Push the changes to the `prod` branch in Github. Netlify will run
+Push the changes to the `prod` branch in Github.
+
+In both cases Netlify will build and deploy the application to the appropiate environment.
 
 ## Tools
 
-- The aplication uses [React.js](https://reactjs.org/) framework v17
-- The main style tool used is [styled-components](https://styled-components.com/) <br/>
-- [React-inner-image-zoom](https://github.com/laurenashpole/react-inner-image-zoom): implemented to allow the user to gather more information from the image
-- [react-infinite-scroll-component](https://github.com/ankeetmaini/react-infinite-scroll-component): added to handle infinite scroll loading states and calls to the server
+- The aplication uses [React.js](https://reactjs.org/) framework (version ^17.0.0)
+- The main style tool used is [styled-components](https://styled-components.com/)(version ^5.3.5)
+- [React-inner-image-zoom](https://github.com/laurenashpole/react-inner-image-zoom): implemented to allow the user to gather more information from the image(version ^3.0.0)
+- [react-infinite-scroll-component](https://github.com/ankeetmaini/react-infinite-scroll-component): added to handle infinite scroll loading states and calls to the server (version ^6.1.0)
 
 ## Quality
 
@@ -72,18 +82,16 @@ The quality test has been evaluated by [Lighthouse](https://developers.google.co
 - Best Practices: 100%
 - SEO: 100%
 
-The complete report can be found [here](https://phone-catalogue-app.netlify.app//lighthouse.html).
+An example report can be found [here](https://phone-catalogue-app.netlify.app//lighthouse.html).
 
 ## Backend & Endpoints
 
-The endpoints called are:
+The endpoints from the [backend](https://github.com/crisouteda/phone-catalogue-server) called are:
 
-- Sign up to get credentials for create, update and delete : `auth/signUp`
-- Sign in to get credentials for create, update and delete : `auth/signIn`
-- Get a short list (items= number of items retrieved) with basic information of phones: `phones/pagination/:items/:exclusiveStartKey
+- Sign up to get credentials to create, update and delete items from the database: `auth/signUp`
+- Sign in to get credentials to create, update and delete items from the database: `auth/signIn`
+- Get a short list (where items is the number of items to retrieve from the database) with basic information of phones: `phones/pagination/:items/:exclusiveStartKey
 - Get extended information about one phone: `phones/:id`
 - Create new phone: `phones/`
 - Delete phone by id: `phones/delete`
 - Update phone information: `phones/put`
-
-[Github repository with the backend source.](https://github.com/crisouteda/phone-catalogue-server)
