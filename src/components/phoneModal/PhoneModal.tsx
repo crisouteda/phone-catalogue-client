@@ -6,7 +6,7 @@ import {
   Text,
   PrimaryButton,
   CustomInput,
-  ErrorLabel,
+  ErrorText,
 } from "../../components";
 import { ModalContent } from "./PhoneModal.styled";
 import { useContextState, useContextActions } from "../../context";
@@ -84,32 +84,37 @@ export const PhoneModal = memo(() => {
               alignSelf="flex-start"
             />
           )}
-          {requiredKeys.map(
-            (key: string) =>
-              !!phone[key] &&
-              (isEdit ? (
-                <CustomInput
-                  id={key}
-                  label={key}
-                  type="text"
-                  key={key}
-                  value={phoneInfo && phoneInfo[key] ? phoneInfo[key] : ""}
-                  onChange={(e) =>
-                    setPhoneInfo((c: any) => ({ ...c, [key]: e }))
-                  }
-                />
-              ) : (
-                <>
-                  <Text text={key} bold key={`key-${key}`} />
-                  <Text
-                    loading={updatePhoneLoading}
-                    text={phone[key]}
-                    secondary
-                    key={`value-${key}`}
+          {isEdit &&
+            requiredKeys.map(
+              (key: string) =>
+                !!phone[key] && (
+                  <CustomInput
+                    id={key}
+                    label={key}
+                    type="text"
+                    key={key}
+                    value={phoneInfo && phoneInfo[key] ? phoneInfo[key] : ""}
+                    onChange={(e) =>
+                      setPhoneInfo((c: any) => ({ ...c, [key]: e }))
+                    }
                   />
-                </>
-              ))
-          )}
+                )
+            )}
+          {!isEdit &&
+            requiredKeys.map(
+              (key: string) =>
+                !!phone[key] && (
+                  <>
+                    <Text text={key} bold key={`key-${key}`} />
+                    <Text
+                      loading={updatePhoneLoading}
+                      text={phone[key]}
+                      secondary
+                      key={`value-${key}`}
+                    />
+                  </>
+                )
+            )}
           {isAuth && isEdit && (
             <>
               <PrimaryButton
@@ -118,11 +123,10 @@ export const PhoneModal = memo(() => {
                 loading={updatePhoneLoading}
                 handleOnClick={() => handleUpdatePhone(phoneInfo)}
               />
-              {updatePhoneError && (
-                <ErrorLabel>
-                  {updatePhoneError?.message || "Error updating the item"}
-                </ErrorLabel>
-              )}
+              <ErrorText
+                text={updatePhoneError?.message || "Error updating the item"}
+                condition={updatePhoneError}
+              />
             </>
           )}
 
@@ -134,11 +138,10 @@ export const PhoneModal = memo(() => {
                 loading={deletePhoneLoading}
                 handleOnClick={handleDelete}
               />
-              {deletePhoneError && (
-                <ErrorLabel>
-                  {deletePhoneError?.message || "Error deleting the item"}
-                </ErrorLabel>
-              )}
+              <ErrorText
+                text={deletePhoneError?.message || "Error deleting the item"}
+                condition={deletePhoneError}
+              />
             </>
           )}
         </div>
