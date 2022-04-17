@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import { WidthThreshold } from "../../constants";
 
 const OpenModal = keyframes` 
   0% {
