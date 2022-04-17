@@ -15,42 +15,13 @@ const OpenModal = keyframes`
 
 export const ModalContent = styled.div`
   margin: 40px;
-  width: 90%;
   height: 100%;
+  width: 90%;
   animation: 0.5s ease-in-out ${OpenModal};
 
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   flex-wrap: wrap;
-
-  .phone-image {
-    height: auto;
-    max-height: 700px;
-    width: auto;
-    max-width: 250px;
-  }
-
-  .iiz__hint {
-    bottom: initial;
-  }
-
-  .vertical-list {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 65%;
-    min-width: 200px;
-  }
-
-  > * {
-    &:first-child {
-      margin-bottom: 20px;
-    }
-  }
-
-  @media (max-width: ${WidthThreshold}) {
-    .vertical-list {
-      width: 90%;
-    }
-  }
 `;

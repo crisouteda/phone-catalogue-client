@@ -1,6 +1,6 @@
 {
   "API_BASE": {
-    "STAGING": "https://phone-catalogue-server-staging.herokuapp.com/",
+    "STAGING": "http://localhost:4000/",
     "PRODUCTION": "https://phone-catalogue-server.herokuapp.com/"
   }
 }

@@ -17,3 +17,36 @@ export function CloseIcon() {
     </svg>
   );
 }
+
+export function LoadingIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ margin: "auto" }}
+      width="28"
+      height="28"
+      display="block"
+      preserveAspectRatio="xMidYMid"
+      viewBox="0 0 100 100"
+    >
+      <circle
+        cx="50"
+        cy="50"
+        r="34"
+        fill="none"
+        stroke="#fff"
+        strokeDasharray="160.22122533307947 55.40707511102649"
+        strokeWidth="7"
+      >
+        <animateTransform
+          attributeName="transform"
+          dur="1s"
+          keyTimes="0;1"
+          repeatCount="indefinite"
+          type="rotate"
+          values="0 50 50;360 50 50"
+        ></animateTransform>
+      </circle>
+    </svg>
+  );
+}

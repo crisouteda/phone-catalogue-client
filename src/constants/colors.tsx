@@ -11,7 +11,7 @@ export const colors = {
     secondary_opacity40: "#5A172A40",
     body: "#613240",
     error: "#C5292A",
-    success: "#4BB543",
+    success: "#339989",
   },
   [THEMES.RED_DARK]: {
     bg: "#232323",

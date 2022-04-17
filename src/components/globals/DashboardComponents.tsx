@@ -1,6 +1,16 @@
 import React, { memo } from "react";
+import { LoadingIcon } from "../../assets";
 
-import { CustomText, CustomFlex } from "./GlobalComponents.styled";
+import {
+  CustomText,
+  CustomFlex,
+  CustomButton,
+  Label,
+  ErrorLabel,
+  Input,
+  InputBox,
+  CustomLoadingDots,
+} from "./GlobalComponents.styled";
 
 export const Text = memo(
   ({
@@ -9,6 +19,7 @@ export const Text = memo(
     bold = false,
     secondary = false,
     isTitle = false,
+    loading = false,
     ...rest
   }: {
     text?: string;
@@ -17,6 +28,7 @@ export const Text = memo(
     secondary?: boolean;
     isTitle?: boolean;
     rest?: any;
+    loading?: boolean;
   }) => {
     return (
       <CustomText
@@ -26,7 +38,7 @@ export const Text = memo(
         isTitle={isTitle}
         {...rest}
       >
-        {text}
+        {loading ? <LoadingDots /> : text}
       </CustomText>
     );
   }
@@ -40,4 +52,78 @@ export const Flex = memo(
     children: React.ReactNode;
     vertical?: boolean;
   }) => <CustomFlex vertical={vertical}>{children}</CustomFlex>
+);
+
+export const PrimaryButton = memo(
+  ({
+    text,
+    handleOnClick,
+    alignSelf,
+    disabled,
+    loading,
+  }: {
+    text: string;
+    handleOnClick?: () => void;
+    alignSelf?: string;
+    disabled?: boolean;
+    loading?: boolean;
+  }) => (
+    <CustomButton
+      onClick={handleOnClick}
+      alignSelf={alignSelf}
+      disabled={disabled}
+    >
+      {text}
+      {loading && (
+        <span className="loading">
+          <LoadingIcon />
+        </span>
+      )}
+    </CustomButton>
+  )
+);
+
+export const CustomInput = ({
+  type,
+  value,
+  label,
+  id,
+  onChange,
+  error,
+  pattern,
+}: {
+  type?: string;
+  value?: string;
+  label?: string;
+  id?: string;
+  onChange: (e: string) => void;
+  error?: string;
+  pattern?: string;
+}) => {
+  if (!id) throw new Error("specify an id for each input");
+  return (
+    <InputBox>
+      <Label htmlFor={id}>{label}</Label>
+      <Input
+        id={id}
+        type={type}
+        value={!value ? "" : value}
+        onChange={(e: any) => onChange(e.target.value)}
+        pattern={pattern}
+      />
+      {error && (
+        <ErrorLabel data-testid={id + "_error"} htmlFor={id}>
+          {error}
+        </ErrorLabel>
+      )}
+    </InputBox>
+  );
+};
+
+export const LoadingDots = () => (
+  <CustomLoadingDots>
+    <div className="dot1" />
+    <div className="dot2" />
+    <div className="dot3" />
+  </CustomLoadingDots>
 );

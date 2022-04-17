@@ -51,7 +51,7 @@ yarn start
 
 [Netlify](https://www.netlify.com/) is used as a Continuous Integration and Continuous Deployment (CI/CD) tool.
 
-[staging app](phone-catalogue-app-staging.netlify.app)
+[staging app](https://phone-catalogue-app-staging.netlify.app)
 
 Push the changes to the `main` branch in Github. Netlify will run
 

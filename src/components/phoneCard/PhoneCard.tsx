@@ -7,7 +7,7 @@ export const PhoneCard = memo(({ phone }: any) => {
   const [_, setSearchParams] = useSearchParams();
 
   const priceHelper = () => {
-    const priceHelper = phone?.price.replace(/About /g, "");
+    const priceHelper = phone?.price?.replace(/About /g, "");
     return priceHelper;
   };
 

@@ -1,1 +1,2 @@
-export * from "./endpoints";
+export * from "./mainEndpoints";
+export * from "./authEndpoints";

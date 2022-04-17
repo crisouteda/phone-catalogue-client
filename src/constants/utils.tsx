@@ -1,1 +1,1 @@
-export const WidthThreshold = "500px";
+export const WidthThreshold = "700px";

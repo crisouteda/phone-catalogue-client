@@ -1,29 +1,50 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, memo, lazy, Suspense } from "react";
+import React, { useState, useEffect, memo, lazy, Suspense } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router-dom";
 import { HeaderTitle, ItemsDisplayed } from "../constants";
-import { Flex, Header, Card, Modal, LoadingCards } from "../components";
+import {
+  Flex,
+  Header,
+  Card,
+  Modal,
+  LoadingCards,
+  RegisterModal,
+  PrimaryButton,
+} from "../components";
 import { useContextActions } from "../context";
 import { useContextState } from "../context";
 import { PageLayout } from "./Page.style";
+import CreateModal from "../components/createModal";
 
 const PhoneModal = lazy(() => import("../components/phoneModal"));
 const PhoneCard = lazy(() => import("../components/phoneCard"));
 
 export default memo(function Dashboard() {
   const location: any = useLocation();
-  const { handleGetPhones, handleGetPhone, handleClearPhone } =
-    useContextActions();
-  const { phones, lastScanned } = useContextState();
+  const {
+    handleGetPhones,
+    handleGetPhone,
+    handleClearPhone,
+    handleOpenAuth,
+    handleCloseAuth,
+  } = useContextActions();
+  const { phones, phonesLimitReached, lastScanned, isAuth } = useContextState();
+  const [openCreate, setOpenCreate] = useState(false);
 
   useEffect(() => {
     const url = new URLSearchParams(location.search);
     const id = url.get("id");
+    const register = url.get("register");
     if (id) {
       handleGetPhone(id);
     } else {
       handleClearPhone();
+    }
+    if (register && JSON.parse(register)) {
+      handleOpenAuth();
+    } else {
+      handleCloseAuth();
     }
   }, [location]);
 
@@ -35,15 +56,23 @@ export default memo(function Dashboard() {
     fetchMoreData();
   }, []);
 
+  const hasMore = !phonesLimitReached || lastScanned === undefined;
+
   return (
     <>
       <Header title={HeaderTitle} />
       <PageLayout>
+        {isAuth && (
+          <PrimaryButton
+            text="Add phone"
+            handleOnClick={() => setOpenCreate(true)}
+          />
+        )}
         {phones?.length ? (
           <InfiniteScroll
-            dataLength={phones?.length}
+            dataLength={phones.length}
             next={fetchMoreData}
-            hasMore={!!lastScanned}
+            hasMore={hasMore}
             loader={<LoadingCards />}
           >
             <Flex>
@@ -60,6 +89,8 @@ export default memo(function Dashboard() {
       </PageLayout>
       <Suspense fallback={<Modal />}>
         <PhoneModal />
+        {openCreate && <CreateModal setClose={() => setOpenCreate(false)} />}
+        <RegisterModal />
       </Suspense>
     </>
   );
