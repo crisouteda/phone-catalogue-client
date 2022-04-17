@@ -1,5 +1,5 @@
 export interface IPhone {
-  id: string;
+  id?: string;
   name: string;
   thumbnailFileName: string;
   price: string;
