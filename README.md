@@ -1,5 +1,7 @@
 # Phone Catalogue - Client side
 
+Frontend for phone catalogue management. Backend can be found in the following repository: [phone-catalogue-server](https://github.com/crisouteda/phone-catalogue-server)
+
 ## Starting 🚀
 
 These instructions will allow you to get a working copy of the project on your local machine for development and testing purposes.
