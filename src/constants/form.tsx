@@ -35,3 +35,13 @@ export const formHelper: { [key: string]: IForm } = {
   color: { required: false, type: "text" },
   id: { required: false, type: "text" },
 };
+
+export const requiredKeys = [
+  "screen",
+  "memory",
+  "manufacturer",
+  "processor",
+  "price",
+  "description",
+  "color",
+];

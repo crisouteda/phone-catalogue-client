@@ -2,11 +2,7 @@
 import React, { useState, useEffect, memo, lazy, Suspense } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router-dom";
-import {
-  HEADER_TITLE,
-  ITEMS_DISPLAYED,
-  CREATE_PHONE_BUTTON,
-} from "../constants";
+import { ITEMS_DISPLAYED, CREATE_PHONE_BUTTON } from "../constants";
 import {
   Flex,
   Header,

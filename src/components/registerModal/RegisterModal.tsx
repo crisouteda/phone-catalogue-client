@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useContextActions, useContextState } from "../../context";
 import { Modal, Text } from "../../components";
 import { CustomInput, PrimaryButton } from "../globals";
-import { SIGN } from "../../constants";
+import { SIGN_UP_BUTTON, LOG_IN_BUTTON } from "../../constants";
 import { ModalContent } from "./RegisterModal.styled";
 import { ErrorLabel } from "../globals/GlobalComponents.styled";
 
@@ -38,7 +38,7 @@ export const RegisterModal = memo(() => {
   return (
     <Modal setClose={() => setSearchParams({})}>
       <ModalContent>
-        <Text large bold text={isSignUp ? "Sign up" : "Log in"} />
+        <Text large bold text={isSignUp ? SIGN_UP_BUTTON : LOG_IN_BUTTON} />
         <CustomInput
           label="email"
           id="email"
