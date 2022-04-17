@@ -4,21 +4,12 @@ import { ModalContent } from "./CreateModal.styled";
 import { IPhone } from "../../types";
 import { PrimaryButton, ErrorText, Modal, CustomInput } from "../globals";
 import { useContextActions, useContextState } from "../../context";
-
-const initialObject: IPhone = {
-  name: "",
-  thumbnailFileName: "",
-  screen: "",
-  memory: "",
-  manufacturer: "",
-  processor: "",
-  price: "",
-  description: "",
-  color: "",
-  id: "",
-};
-
-const required = ["name", "thumbnailFileName", "price"];
+import { initialObject, formHelper } from "../../constants";
+import {
+  CheckLinkHTTPS,
+  CheckNotEmptyString,
+  handleDisabled,
+} from "../../helpers";
 
 export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -36,27 +27,34 @@ export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [createPhone]);
 
+  const formErrors: { [key: string]: string } = {
+    name: CheckNotEmptyString(phoneInfo["name"]),
+    thumbnailFileName: CheckLinkHTTPS(phoneInfo["thumbnailFileName"]),
+    price: CheckNotEmptyString(phoneInfo["price"]),
+  };
+
+  const disabled = handleDisabled(formErrors);
+
   return (
     <Modal className="phone-modal" setClose={setClose}>
       <ModalContent>
         {Object.keys(phoneInfo).map((key) => (
           <CustomInput
             id={key}
-            label={required.includes(key) ? `${key} - required *` : key}
-            type={key === "thumbnailFileName" ? "url" : "text"}
-            pattern={key === "thumbnailFileName" ? "https://.*" : undefined}
+            key={key}
+            label={formHelper[key]?.required ? `${key} - required*` : `${key}`}
+            required={formHelper[key]?.required}
+            type={formHelper[key]?.type}
+            pattern={formHelper[key]?.pattern}
             value={phoneInfo[key]}
             onChange={(e) => setPhoneInfo((c: any) => ({ ...c, [key]: e }))}
+            error={formErrors[key]}
           />
         ))}
         <PrimaryButton
           text="Create Item"
           loading={createPhoneLoading}
-          disabled={
-            !phoneInfo["name"] ||
-            !phoneInfo["thumbnailFileName"] ||
-            !phoneInfo["price"]
-          }
+          disabled={disabled}
           handleOnClick={() => handleCreatePhone(phoneInfo)}
         />
         <ErrorText

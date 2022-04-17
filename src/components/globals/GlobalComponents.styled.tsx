@@ -86,7 +86,7 @@ export const Label = styled.label<CustomButtonProps>`
 export const ErrorLabel = styled(Label)`
   color: ${(props) => props.theme.error};
   transition: visibility 0.3s linear, opacity 0.3s linear;
-
+  margin-bottom: 8px;
   display: flex;
 
   svg {

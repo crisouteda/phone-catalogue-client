@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { ErrorIcon, LoadingIcon } from "../../assets";
 
 import {
@@ -99,6 +99,7 @@ export const CustomInput = ({
   type,
   value,
   label,
+  required,
   id,
   onChange,
   error,
@@ -107,23 +108,28 @@ export const CustomInput = ({
   type?: string;
   value?: string;
   label?: string;
+  required?: boolean;
   id?: string;
   onChange: (e: string) => void;
   error?: string;
   pattern?: string;
 }) => {
+  const [focus, setFocus] = useState(false);
+
   if (!id) throw new Error("specify an id for each input");
   return (
     <InputBox>
       <Label htmlFor={id}>{label}</Label>
       <Input
         id={id}
+        required={required}
         type={type}
         value={!value ? "" : value}
         onChange={(e: any) => onChange(e.target.value)}
         pattern={pattern}
+        onFocus={() => setFocus(true)}
       />
-      {error && (
+      {error && focus && (
         <ErrorLabel data-testid={id + "_error"} htmlFor={id}>
           {error}
         </ErrorLabel>

@@ -13,3 +13,9 @@ export interface IPhone {
   screen?: string;
   [val: string]: string | undefined;
 }
+
+export interface IForm {
+  required: boolean;
+  type?: string;
+  pattern?: string;
+}
