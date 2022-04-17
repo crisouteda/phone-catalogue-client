@@ -30,6 +30,7 @@ export const RegisterModal = memo(() => {
     } else {
       handleSignIn(email, password);
     }
+    setSearchParams({});
   };
 
   if (!openAuth || isAuth) return null;
