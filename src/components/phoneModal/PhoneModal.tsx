@@ -10,17 +10,16 @@ import {
 } from "../../components";
 import { ModalContent } from "./PhoneModal.styled";
 import { useContextState, useContextActions } from "../../context";
+import {
+  requiredKeys,
+  ENABLE_EDIT_BUTTON,
+  DISABLE_STOP_EDIT,
+  ERROR_UPDATE,
+  ERROR_DELETE,
+  DELETE_ITEM_BUTTON,
+  UPDATE_ITEM_BUTTON,
+} from "../../constants";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
-
-const requiredKeys = [
-  "screen",
-  "memory",
-  "manufacturer",
-  "processor",
-  "price",
-  "description",
-  "color",
-];
 
 export const PhoneModal = memo(() => {
   const {
@@ -79,7 +78,7 @@ export const PhoneModal = memo(() => {
         <div className="vertical-list">
           {isAuth && (
             <PrimaryButton
-              text={isEdit ? "Stop Edit" : "Edit information"}
+              text={isEdit ? DISABLE_STOP_EDIT : ENABLE_EDIT_BUTTON}
               handleOnClick={() => setIsEdit(!isEdit)}
               alignSelf="flex-start"
             />
@@ -118,13 +117,13 @@ export const PhoneModal = memo(() => {
           {isAuth && isEdit && (
             <>
               <PrimaryButton
-                text="Update item"
+                text={UPDATE_ITEM_BUTTON}
                 alignSelf="flex-start"
                 loading={updatePhoneLoading}
                 handleOnClick={() => handleUpdatePhone(phoneInfo)}
               />
               <ErrorText
-                text={updatePhoneError?.message || "Error updating the item"}
+                text={updatePhoneError?.message || ERROR_UPDATE}
                 condition={updatePhoneError}
               />
             </>
@@ -133,13 +132,13 @@ export const PhoneModal = memo(() => {
           {isAuth && !isEdit && (
             <>
               <PrimaryButton
-                text="Delete item"
+                text={DELETE_ITEM_BUTTON}
                 alignSelf="flex-start"
                 loading={deletePhoneLoading}
                 handleOnClick={handleDelete}
               />
               <ErrorText
-                text={deletePhoneError?.message || "Error deleting the item"}
+                text={deletePhoneError?.message || ERROR_DELETE}
                 condition={deletePhoneError}
               />
             </>

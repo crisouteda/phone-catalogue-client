@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { HeaderTitle, ItemsDisplayed } from "../../../src/constants";
+import { HEADER_TITLE, ITEMS_DISPLAYED } from "../../../src/constants";
 
 describe("Phone App", () => {
   beforeEach(() => {
@@ -7,15 +7,15 @@ describe("Phone App", () => {
   });
 
   it("front page can be opened", () => {
-    cy.contains(HeaderTitle);
+    cy.contains(HEADER_TITLE);
   });
 
   it(`${ItemsDisplayed} loading cards being rendered`, () => {
-    cy.get(".loading-card").should("have.length", ItemsDisplayed);
+    cy.get(".loading-card").should("have.length", ITEMS_DISPLAYED);
   });
 
   it(`${ItemsDisplayed} phone cards being rendered`, () => {
-    cy.get(".phone-card").should("have.length", ItemsDisplayed);
+    cy.get(".phone-card").should("have.length", ITEMS_DISPLAYED);
   });
 
   it("phone modal opens", () => {

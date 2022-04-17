@@ -4,7 +4,7 @@ import { ModalContent } from "./CreateModal.styled";
 import { IPhone } from "../../types";
 import { PrimaryButton, ErrorText, Modal, CustomInput } from "../globals";
 import { useContextActions, useContextState } from "../../context";
-import { initialObject, formHelper } from "../../constants";
+import { initialObject, formHelper, ERROR_CREATE } from "../../constants";
 import {
   CheckLinkHTTPS,
   CheckNotEmptyString,
@@ -58,7 +58,7 @@ export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
           handleOnClick={() => handleCreatePhone(phoneInfo)}
         />
         <ErrorText
-          text={createPhoneError?.message || "Error creating the item"}
+          text={createPhoneError?.message || ERROR_CREATE}
           condition={createPhoneError}
         />
       </ModalContent>
