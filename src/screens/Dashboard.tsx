@@ -2,7 +2,7 @@
 import React, { useState, useEffect, memo, lazy, Suspense } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router-dom";
-import { HeaderTitle, ItemsDisplayed } from "../constants";
+import { ITEMS_DISPLAYED, CREATE_PHONE_BUTTON } from "../constants";
 import {
   Flex,
   Header,
@@ -12,8 +12,7 @@ import {
   RegisterModal,
   PrimaryButton,
 } from "../components";
-import { useContextActions } from "../context";
-import { useContextState } from "../context";
+import { useContextActions, useContextState } from "../context";
 import { PageLayout } from "./Page.style";
 import CreateModal from "../components/createModal";
 
@@ -49,7 +48,7 @@ export default memo(function Dashboard() {
   }, [location]);
 
   const fetchMoreData = () => {
-    handleGetPhones(ItemsDisplayed, lastScanned);
+    handleGetPhones(ITEMS_DISPLAYED, lastScanned);
   };
 
   useEffect(() => {
@@ -60,11 +59,11 @@ export default memo(function Dashboard() {
 
   return (
     <>
-      <Header title={HeaderTitle} />
+      <Header />
       <PageLayout>
         {isAuth && (
           <PrimaryButton
-            text="Add phone"
+            text={CREATE_PHONE_BUTTON}
             handleOnClick={() => setOpenCreate(true)}
           />
         )}

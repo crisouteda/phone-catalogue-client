@@ -1,9 +1,9 @@
 import React, { memo } from "react";
 import { Card } from "./Card";
 import { Flex } from "./DashboardComponents";
-import { ItemsDisplayed } from "../../constants";
+import { ITEMS_DISPLAYED } from "../../constants";
 
-const loadingCards = Array.apply(null, Array(ItemsDisplayed));
+const loadingCards = Array.apply(null, Array(ITEMS_DISPLAYED));
 
 export const LoadingCards = memo(() => {
   return (

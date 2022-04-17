@@ -1,9 +1,6 @@
 # Phone Catalogue - Client side
 
-The api endpoints called are:
-
-- Get a short list (items= number of items retrieved) with basic information of phones: `phones/pagination/:items/:exclusiveStartKey
-- Get extended information about one phone: `phones/:id`
+Frontend for phone catalogue management. Backend can be found in the following repository: [phone-catalogue-server](https://github.com/crisouteda/phone-catalogue-server)
 
 ## Starting 🚀
 
@@ -74,3 +71,19 @@ The quality test has been evaluated by [Lighthouse](https://developers.google.co
 - Accessibility: 100%
 - Best Practices: 100%
 - SEO: 100%
+
+The complete report can be found here.
+
+## Backend & Endpoints
+
+The endpoints called are:
+
+- Sign up to get credentials for create, update and delete : `auth/signUp`
+- Sign in to get credentials for create, update and delete : `auth/signIn`
+- Get a short list (items= number of items retrieved) with basic information of phones: `phones/pagination/:items/:exclusiveStartKey
+- Get extended information about one phone: `phones/:id`
+- Create new phone: `phones/`
+- Delete phone by id: `phones/delete`
+- Update phone information: `phones/put`
+
+[Github repository with the backend source.](https://github.com/crisouteda/phone-catalogue-server)

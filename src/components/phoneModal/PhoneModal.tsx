@@ -6,21 +6,20 @@ import {
   Text,
   PrimaryButton,
   CustomInput,
-  ErrorLabel,
+  ErrorText,
 } from "../../components";
 import { ModalContent } from "./PhoneModal.styled";
 import { useContextState, useContextActions } from "../../context";
+import {
+  requiredKeys,
+  ENABLE_EDIT_BUTTON,
+  DISABLE_STOP_EDIT,
+  ERROR_UPDATE,
+  ERROR_DELETE,
+  DELETE_ITEM_BUTTON,
+  UPDATE_ITEM_BUTTON,
+} from "../../constants";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
-
-const requiredKeys = [
-  "screen",
-  "memory",
-  "manufacturer",
-  "processor",
-  "price",
-  "description",
-  "color",
-];
 
 export const PhoneModal = memo(() => {
   const {
@@ -79,66 +78,69 @@ export const PhoneModal = memo(() => {
         <div className="vertical-list">
           {isAuth && (
             <PrimaryButton
-              text={isEdit ? "Stop Edit" : "Edit information"}
+              text={isEdit ? DISABLE_STOP_EDIT : ENABLE_EDIT_BUTTON}
               handleOnClick={() => setIsEdit(!isEdit)}
               alignSelf="flex-start"
             />
           )}
-          {requiredKeys.map(
-            (key: string) =>
-              !!phone[key] &&
-              (isEdit ? (
-                <CustomInput
-                  id={key}
-                  label={key}
-                  type="text"
-                  key={key}
-                  value={phoneInfo && phoneInfo[key] ? phoneInfo[key] : ""}
-                  onChange={(e) =>
-                    setPhoneInfo((c: any) => ({ ...c, [key]: e }))
-                  }
-                />
-              ) : (
-                <>
-                  <Text text={key} bold key={`key-${key}`} />
-                  <Text
-                    loading={updatePhoneLoading}
-                    text={phone[key]}
-                    secondary
-                    key={`value-${key}`}
+          {isEdit &&
+            requiredKeys.map(
+              (key: string) =>
+                !!phone[key] && (
+                  <CustomInput
+                    id={key}
+                    label={key}
+                    type="text"
+                    key={key}
+                    value={phoneInfo && phoneInfo[key] ? phoneInfo[key] : ""}
+                    onChange={(e) =>
+                      setPhoneInfo((c: any) => ({ ...c, [key]: e }))
+                    }
                   />
-                </>
-              ))
-          )}
+                )
+            )}
+          {!isEdit &&
+            requiredKeys.map(
+              (key: string) =>
+                !!phone[key] && (
+                  <>
+                    <Text text={key} bold key={`key-${key}`} />
+                    <Text
+                      loading={updatePhoneLoading}
+                      text={phone[key]}
+                      secondary
+                      key={`value-${key}`}
+                    />
+                  </>
+                )
+            )}
           {isAuth && isEdit && (
             <>
               <PrimaryButton
-                text="Update item"
+                text={UPDATE_ITEM_BUTTON}
                 alignSelf="flex-start"
                 loading={updatePhoneLoading}
                 handleOnClick={() => handleUpdatePhone(phoneInfo)}
               />
-              {updatePhoneError && (
-                <ErrorLabel>
-                  {updatePhoneError?.message || "Error updating the item"}
-                </ErrorLabel>
-              )}
+              <ErrorText
+                text={updatePhoneError?.message || ERROR_UPDATE}
+                condition={updatePhoneError}
+              />
             </>
           )}
 
           {isAuth && !isEdit && (
             <>
               <PrimaryButton
-                text="Delete item"
+                text={DELETE_ITEM_BUTTON}
                 alignSelf="flex-start"
                 loading={deletePhoneLoading}
                 handleOnClick={handleDelete}
               />
-              {deletePhoneError && (
-                <ErrorLabel>
-                  {deletePhoneError?.message || "Error deleting the item"}
-                </ErrorLabel>
-              )}
+              <ErrorText
+                text={deletePhoneError?.message || ERROR_DELETE}
+                condition={deletePhoneError}
+              />
             </>
           )}
         </div>
