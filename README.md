@@ -72,6 +72,8 @@ The quality test has been evaluated by [Lighthouse](https://developers.google.co
 - Best Practices: 100%
 - SEO: 100%
 
+The complete report can be found here.
+
 ## Backend & Endpoints
 
 The endpoints called are:
