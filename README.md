@@ -72,7 +72,7 @@ The quality test has been evaluated by [Lighthouse](https://developers.google.co
 - Best Practices: 100%
 - SEO: 100%
 
-The complete report can be found here.
+The complete report can be found [here](https://phone-catalogue-app.netlify.app//lighthouse.html).
 
 ## Backend & Endpoints
 
