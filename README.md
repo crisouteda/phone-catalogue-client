@@ -14,7 +14,7 @@ The app is serve in two environments:
 
 [prod app](https://phone-catalogue-app.netlify.app/)
 
-## 🚀 Starting
+## 💻 Development
 
 These instructions will allow you to get a working copy of the project on your local machine for development and testing purposes.
 
@@ -38,7 +38,7 @@ or
 yarn
 ```
 
-### ⚙️ Starting the project
+### 🏁 Starting the project
 
 To serve the app locally run:
 
@@ -52,7 +52,7 @@ or
 yarn start
 ```
 
-## Deploying to Netlify
+## 🚀 Deploying to Netlify
 
 [Netlify](https://www.netlify.com/) is used as a Continuous Integration and Continuous Deployment (CI/CD) tool.
 
@@ -73,7 +73,7 @@ In both cases Netlify will build and deploy the application to the appropiate en
 - [React-inner-image-zoom](https://github.com/laurenashpole/react-inner-image-zoom): implemented to allow the user to gather more information from the image(version ^3.0.0)
 - [react-infinite-scroll-component](https://github.com/ankeetmaini/react-infinite-scroll-component): added to handle infinite scroll loading states and calls to the server (version ^6.1.0)
 
-## Quality
+## ⭐ Quality
 
 The quality test has been evaluated by [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
@@ -84,7 +84,7 @@ The quality test has been evaluated by [Lighthouse](https://developers.google.co
 
 An example report can be found [here](https://phone-catalogue-app.netlify.app//lighthouse.html).
 
-## Backend & Endpoints
+## ⚙️ Backend & Endpoints
 
 The endpoints from the [backend](https://github.com/crisouteda/phone-catalogue-server) called are:
 
