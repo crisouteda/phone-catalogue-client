@@ -1,10 +1,10 @@
 import React, { memo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-
+import { useContextActions, useContextState } from "../../context";
 import { Modal, Text } from "../../components";
 import { CustomInput, PrimaryButton } from "../globals";
+import { SIGN } from "../../constants";
 import { ModalContent } from "./RegisterModal.styled";
-import { useContextActions, useContextState } from "../../context";
 import { ErrorLabel } from "../globals/GlobalComponents.styled";
 
 export const RegisterModal = memo(() => {

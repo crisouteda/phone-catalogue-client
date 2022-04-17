@@ -13,3 +13,4 @@ export const CREATE_PHONE_BUTTON = "Add phone";
 
 export const SIGN_UP_BUTTON = "Sign Up";
 export const LOG_OUT_BUTTON = "Log Out";
+export const LOG_IN_BUTTON = "Log In";
