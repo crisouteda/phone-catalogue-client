@@ -13,6 +13,7 @@ export const CREATE_PHONE_BUTTON = "Add phone";
 export const SEND_AUTH_DATA_BUTTON = "Finalize";
 export const FROM_SIGNUP_TO_SIGNIN_TEXT = "Already have an account";
 export const FROM_SIGNIN_TO_SIGNUP_TEXT = "Back to register";
+export const CREATE_ITEM_BUTTON = "Create item";
 
 export const SIGN_UP_BUTTON = "Sign Up";
 export const LOG_OUT_BUTTON = "Log Out";

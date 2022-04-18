@@ -9,6 +9,7 @@ import {
   LOG_OUT_BUTTON,
   CREATE_PHONE_BUTTON,
   FROM_SIGNUP_TO_SIGNIN_TEXT,
+  CREATE_ITEM_BUTTON,
 } from "../../../src/constants";
 
 chai.use(chaiColors);
@@ -32,7 +33,7 @@ describe("Phone App", () => {
 
   it("phone modal opens", () => {
     cy.get(".phone-card:first").click();
-    cy.get(".phone-modal");
+    cy.get(".phone-modal").should("be.visible");
   });
 
   it("theme toggle changes colors", () => {
@@ -66,5 +67,23 @@ describe("Phone App", () => {
     cy.get(".register-modal").contains(SEND_AUTH_DATA_BUTTON).click();
     cy.get(".header").contains(LOG_OUT_BUTTON).should("be.visible");
     cy.get(".page").contains(CREATE_PHONE_BUTTON).should("be.visible");
+  });
+
+  it("user can add a phone", () => {
+    // sign in
+    cy.get(".header").contains(LOG_OUT_BUTTON).should("not.exist");
+    cy.get(".page").contains(CREATE_PHONE_BUTTON).should("not.exist");
+    cy.get(".header").contains(SIGN_UP_BUTTON).click();
+    cy.get(".register-modal").contains(FROM_SIGNUP_TO_SIGNIN_TEXT).click();
+    cy.get(".register-modal").find("input").first().type("cris@cris.cris");
+    cy.get(".register-modal").find("input").last().type("1234");
+    cy.get(".register-modal").contains(SEND_AUTH_DATA_BUTTON).click();
+    cy.get(".header").contains(LOG_OUT_BUTTON).should("be.visible");
+    cy.get(".page").contains(CREATE_PHONE_BUTTON).should("be.visible");
+
+    // create
+    cy.get(".page").contains(CREATE_PHONE_BUTTON).click();
+    cy.get(".create-modal").should("be.visible");
+    cy.get(".create-modal").contains(CREATE_ITEM_BUTTON).should("be.disabled");
   });
 });
