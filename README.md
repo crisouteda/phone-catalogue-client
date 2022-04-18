@@ -6,9 +6,9 @@ The catalogue retrieves a list of phones from a phones database and allows CRUD 
 
 Backend can be found in the following repository: [phone-catalogue-server](https://github.com/crisouteda/phone-catalogue-server)
 
-## Live demo
+## ❤️ Live demo
 
-The app is serve in two environments:
+The app is served in two environments:
 
 [staging app](https://phone-catalogue-app-staging.netlify.app)
 
@@ -66,7 +66,7 @@ Push the changes to the `prod` branch in Github.
 
 In both cases Netlify will build and deploy the application to the appropiate environment.
 
-## Tools
+## 🛠️ Tools
 
 - The aplication uses [React.js](https://reactjs.org/) framework (version ^17.0.0)
 - The main style tool used is [styled-components](https://styled-components.com/)(version ^5.3.5)
