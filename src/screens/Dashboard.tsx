@@ -60,7 +60,7 @@ export default memo(function Dashboard() {
   return (
     <>
       <Header />
-      <PageLayout className="page">
+      <PageLayout>
         {isAuth && (
           <PrimaryButton
             text={CREATE_PHONE_BUTTON}
@@ -75,20 +75,30 @@ export default memo(function Dashboard() {
             loader={<LoadingCards />}
           >
             <Flex>
-              {phones?.map((phone) => (
-                <Suspense key={phone.id} fallback={<Card />}>
-                  <PhoneCard phone={phone} />
-                </Suspense>
-              ))}
+              {phones?.map((phone, i) => {
+                return (
+                  <Suspense
+                    key={`suspense-${phone.id}-${i}`}
+                    fallback={<Card />}
+                  >
+                    <PhoneCard phone={phone} key={`card-${phone.id}-${i}`} />
+                  </Suspense>
+                );
+              })}
             </Flex>
           </InfiniteScroll>
         ) : (
           <LoadingCards />
         )}
       </PageLayout>
-      <Suspense fallback={<Modal />}>
-        <PhoneModal />
-        {openCreate && <CreateModal setClose={() => setOpenCreate(false)} />}
+      <Suspense fallback={<Modal key="modal" />}>
+        <PhoneModal key="phoneModal" />
+        {openCreate && (
+          <CreateModal
+            setClose={() => setOpenCreate(false)}
+            key="createModal"
+          />
+        )}
         <RegisterModal />
       </Suspense>
     </>
