@@ -18,3 +18,7 @@ export const CREATE_ITEM_BUTTON = "Create item";
 export const SIGN_UP_BUTTON = "Sign Up";
 export const LOG_OUT_BUTTON = "Log Out";
 export const LOG_IN_BUTTON = "Log In";
+
+export const ERROR_NOT_HTTPS_URL =
+  "For securify reasons, the urls must start with https://";
+export const ERROR_EMPTY_REQUIRED_INPUT = "Required field cannot be empty.";
