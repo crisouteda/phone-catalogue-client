@@ -35,6 +35,7 @@ import {
   SIGN_IN_FAIL,
   SIGN_IN_SUCCESS,
   LOG_OUT,
+  COLOR_THEME,
 } from "./actionTypes";
 
 import { IPhone } from "../types";
@@ -51,6 +52,7 @@ export interface iActions {
   handleSignIn: any;
   handleLogOut: any;
   handleGetAvailablePhones: any;
+  handleColorTheme: any;
 }
 
 function handleGetPhones(dispatch: React.Dispatch<any>) {
@@ -161,6 +163,12 @@ function handleLogOut(dispatch: React.Dispatch<any>) {
   };
 }
 
+function handleColorTheme(dispatch: React.Dispatch<any>) {
+  return async function (theme: string) {
+    dispatch({ type: COLOR_THEME, payload: theme });
+  };
+}
+
 const functions = {
   handleGetPhones,
   handleGetPhone,
@@ -173,6 +181,7 @@ const functions = {
   handleSignUp,
   handleSignIn,
   handleLogOut,
+  handleColorTheme,
 };
 
 export default functions;
