@@ -10,7 +10,15 @@ export const ENABLE_EDIT_BUTTON = "Edit information";
 export const DELETE_ITEM_BUTTON = "Delete";
 export const UPDATE_ITEM_BUTTON = "Update";
 export const CREATE_PHONE_BUTTON = "Add phone";
+export const SEND_AUTH_DATA_BUTTON = "Finalize";
+export const FROM_SIGNUP_TO_SIGNIN_TEXT = "Already have an account";
+export const FROM_SIGNIN_TO_SIGNUP_TEXT = "Back to register";
+export const CREATE_ITEM_BUTTON = "Create item";
 
 export const SIGN_UP_BUTTON = "Sign Up";
 export const LOG_OUT_BUTTON = "Log Out";
 export const LOG_IN_BUTTON = "Log In";
+
+export const ERROR_NOT_HTTPS_URL =
+  "For securify reasons, the urls must start with https://";
+export const ERROR_EMPTY_REQUIRED_INPUT = "Required field cannot be empty.";

@@ -70,7 +70,7 @@ export const PhoneModal = memo(() => {
   };
   return (
     <Modal className="phone-modal" setClose={handleClose}>
-      <ModalContent>
+      <ModalContent className="phone-modal-content" data-id={phone?.id}>
         <Text text={name} large bold isTitle />
         {imageFileName && (
           <InnerImageZoom src={imageFileName} className="phone-image" />

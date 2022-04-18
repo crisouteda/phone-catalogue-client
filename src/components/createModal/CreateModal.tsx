@@ -4,7 +4,12 @@ import { ModalContent } from "./CreateModal.styled";
 import { IPhone } from "../../types";
 import { PrimaryButton, ErrorText, Modal, CustomInput } from "../globals";
 import { useContextActions, useContextState } from "../../context";
-import { initialObject, formHelper, ERROR_CREATE } from "../../constants";
+import {
+  initialObject,
+  formHelper,
+  ERROR_CREATE,
+  CREATE_ITEM_BUTTON,
+} from "../../constants";
 import {
   CheckLinkHTTPS,
   CheckNotEmptyString,
@@ -36,7 +41,7 @@ export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
   const disabled = handleDisabled(formErrors);
 
   return (
-    <Modal className="phone-modal" setClose={setClose}>
+    <Modal className="create-modal" setClose={setClose}>
       <ModalContent>
         {Object.keys(phoneInfo).map((key) => (
           <CustomInput
@@ -52,7 +57,7 @@ export const CreateModal = memo(({ setClose }: { setClose: () => void }) => {
           />
         ))}
         <PrimaryButton
-          text="Create Item"
+          text={CREATE_ITEM_BUTTON}
           loading={createPhoneLoading}
           disabled={disabled}
           handleOnClick={() => handleCreatePhone(phoneInfo)}

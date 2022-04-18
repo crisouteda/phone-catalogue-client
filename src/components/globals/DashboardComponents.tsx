@@ -150,8 +150,8 @@ export const LoadingDots = memo(() => (
 ));
 
 export const ToggleButton = memo(
-  ({ setState }: { setState: (e: boolean) => void }) => (
-    <CustomSwitch>
+  ({ setState, id }: { setState: (e: boolean) => void; id: string }) => (
+    <CustomSwitch id={id}>
       <input
         type="checkbox"
         onChange={(e) => {
