@@ -20,13 +20,13 @@ These instructions will allow you to get a working copy of the project on your l
 
 ### 📋 Prerequisites
 
-You need to have installed Node JS. Developed with v17.9.0.
+You need to have installed Node JS (Developed on v17.9.0).
 
 ### 🔧 Installation
 
-1. Download this repository as zip or clone the repository on your device (if you clone the repository, note that you will not be able to add your commits).
+1. Download this repository as zip or clone the repository on your device
 2. Open a terminal in the root directory of the repository.
-3. Install the local dependencies by running the command in the terminal:
+3. Install the necessary dependencies by running:
 
 ```
 npm install
@@ -56,14 +56,12 @@ yarn start
 
 ```
 npm run cypress:open
-
 ```
 
 or
 
 ```
 yarn cypress:open
-
 ```
 
 ## 🚀 Deploying to Netlify
@@ -96,7 +94,7 @@ The quality test has been evaluated by [Lighthouse](https://developers.google.co
 - Best Practices: 100%
 - SEO: 100%
 
-An example report can be found [here](https://phone-catalogue-app.netlify.app//lighthouse.html).
+An example report can be found [here](https://phone-catalogue-app.netlify.app/lighthouse.html).
 
 ## ⚙️ Backend & Endpoints
 
