@@ -95,3 +95,9 @@ The endpoints from the [backend](https://github.com/crisouteda/phone-catalogue-s
 - Create new phone: `phones/`
 - Delete phone by id: `phones/delete`
 - Update phone information: `phones/put`
+
+## 📝 Following improvements and TODOS
+
+- Add persistency to token. It should be updated every hour for security reasons.
+
+- UX/UI ensure optimal view in every screen size and improve themes and general design
