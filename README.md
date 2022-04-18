@@ -6,9 +6,9 @@ The catalogue retrieves a list of phones from a phones database and allows CRUD 
 
 Backend can be found in the following repository: [phone-catalogue-server](https://github.com/crisouteda/phone-catalogue-server)
 
-## Live demo
+## ❤️ Live demo
 
-The app is serve in two environments:
+The app is served in two environments:
 
 [staging app](https://phone-catalogue-app-staging.netlify.app)
 
@@ -20,13 +20,13 @@ These instructions will allow you to get a working copy of the project on your l
 
 ### 📋 Prerequisites
 
-You need to have installed Node JS. Developed with v17.9.0.
+You need to have installed Node JS (Developed on v17.9.0).
 
 ### 🔧 Installation
 
-1. Download this repository as zip or clone the repository on your device (if you clone the repository, note that you will not be able to add your commits).
+1. Download this repository as zip or clone the repository on your device
 2. Open a terminal in the root directory of the repository.
-3. Install the local dependencies by running the command in the terminal:
+3. Install the necessary dependencies by running:
 
 ```
 npm install
@@ -52,6 +52,18 @@ or
 yarn start
 ```
 
+### 🧪 Run tests
+
+```
+npm run cypress:open
+```
+
+or
+
+```
+yarn cypress:open
+```
+
 ## 🚀 Deploying to Netlify
 
 [Netlify](https://www.netlify.com/) is used as a Continuous Integration and Continuous Deployment (CI/CD) tool.
@@ -66,7 +78,7 @@ Push the changes to the `prod` branch in Github.
 
 In both cases Netlify will build and deploy the application to the appropiate environment.
 
-## Tools
+## 🛠️ Tools
 
 - The aplication uses [React.js](https://reactjs.org/) framework (version ^17.0.0)
 - The main style tool used is [styled-components](https://styled-components.com/)(version ^5.3.5)
@@ -82,7 +94,7 @@ The quality test has been evaluated by [Lighthouse](https://developers.google.co
 - Best Practices: 100%
 - SEO: 100%
 
-An example report can be found [here](https://phone-catalogue-app.netlify.app//lighthouse.html).
+An example report can be found [here](https://phone-catalogue-app.netlify.app/lighthouse.html).
 
 ## ⚙️ Backend & Endpoints
 
@@ -95,3 +107,11 @@ The endpoints from the [backend](https://github.com/crisouteda/phone-catalogue-s
 - Create new phone: `phones/`
 - Delete phone by id: `phones/delete`
 - Update phone information: `phones/put`
+
+## 📝 Following improvements and TODOS
+
+- Add persistency to token. It should be updated every hour for security reasons.
+
+- Add and improve tests
+
+- UX/UI ensure optimal view in every screen size and improve themes and general design
