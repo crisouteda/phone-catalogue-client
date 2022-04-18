@@ -60,7 +60,7 @@ export default memo(function Dashboard() {
   return (
     <>
       <Header />
-      <PageLayout>
+      <PageLayout className="page">
         {isAuth && (
           <PrimaryButton
             text={CREATE_PHONE_BUTTON}
