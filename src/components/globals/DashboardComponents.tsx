@@ -10,6 +10,7 @@ import {
   Input,
   InputBox,
   CustomLoadingDots,
+  CustomSwitch,
 } from "./GlobalComponents.styled";
 
 export const Text = memo(
@@ -95,53 +96,69 @@ export const PrimaryButton = memo(
   )
 );
 
-export const CustomInput = ({
-  type,
-  value,
-  label,
-  required,
-  id,
-  onChange,
-  error,
-  pattern,
-}: {
-  type?: string;
-  value?: string;
-  label?: string;
-  required?: boolean;
-  id?: string;
-  onChange: (e: string) => void;
-  error?: string;
-  pattern?: string;
-}) => {
-  const [focus, setFocus] = useState(false);
+export const CustomInput = memo(
+  ({
+    type,
+    value,
+    label,
+    required,
+    id,
+    onChange,
+    error,
+    pattern,
+  }: {
+    type?: string;
+    value?: string;
+    label?: string;
+    required?: boolean;
+    id?: string;
+    onChange: (e: string) => void;
+    error?: string;
+    pattern?: string;
+  }) => {
+    const [focus, setFocus] = useState(false);
 
-  if (!id) throw new Error("specify an id for each input");
-  return (
-    <InputBox>
-      <Label htmlFor={id}>{label}</Label>
-      <Input
-        id={id}
-        required={required}
-        type={type}
-        value={!value ? "" : value}
-        onChange={(e: any) => onChange(e.target.value)}
-        pattern={pattern}
-        onFocus={() => setFocus(true)}
-      />
-      {error && focus && (
-        <ErrorLabel data-testid={id + "_error"} htmlFor={id}>
-          {error}
-        </ErrorLabel>
-      )}
-    </InputBox>
-  );
-};
+    if (!id) throw new Error("specify an id for each input");
+    return (
+      <InputBox>
+        <Label htmlFor={id}>{label}</Label>
+        <Input
+          id={id}
+          required={required}
+          type={type}
+          value={!value ? "" : value}
+          onChange={(e: any) => onChange(e.target.value)}
+          pattern={pattern}
+          onFocus={() => setFocus(true)}
+        />
+        {error && focus && (
+          <ErrorLabel data-testid={id + "_error"} htmlFor={id}>
+            {error}
+          </ErrorLabel>
+        )}
+      </InputBox>
+    );
+  }
+);
 
-export const LoadingDots = () => (
+export const LoadingDots = memo(() => (
   <CustomLoadingDots>
     <div className="dot1" />
     <div className="dot2" />
     <div className="dot3" />
   </CustomLoadingDots>
+));
+
+export const ToggleButton = memo(
+  ({ setState }: { setState: (e: boolean) => void }) => (
+    <CustomSwitch>
+      <input
+        type="checkbox"
+        onChange={(e) => {
+          setState(!e.target.checked);
+        }}
+      />
+      <span className="slider round" />
+    </CustomSwitch>
+  )
 );

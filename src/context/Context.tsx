@@ -26,6 +26,7 @@ import {
   SIGN_IN_FAIL,
   SIGN_IN_SUCCESS,
   LOG_OUT,
+  COLOR_THEME,
 } from "./actionTypes";
 import Actions, { iActions } from "./ContextActions";
 import { IPhone } from "../types";
@@ -55,6 +56,7 @@ interface iState {
   signUpError: any;
   signInLoading: boolean;
   signInError: any;
+  colorTheme: string;
 }
 
 // Interface for the actions
@@ -77,6 +79,7 @@ const initialState: iState = {
   signUpError: null,
   signInLoading: false,
   signInError: null,
+  colorTheme: "red light",
 };
 
 function reducer(state: iState, action: { type: string; payload: any }) {
@@ -234,6 +237,8 @@ function reducer(state: iState, action: { type: string; payload: any }) {
         authToken: undefined,
         isAuth: false,
       };
+    case COLOR_THEME:
+      return { ...state, colorTheme: action.payload };
     default:
       return state;
   }
