@@ -52,6 +52,20 @@ or
 yarn start
 ```
 
+### 🧪 Run tests
+
+```
+npm run cypress:open
+
+```
+
+or
+
+```
+yarn cypress:open
+
+```
+
 ## 🚀 Deploying to Netlify
 
 [Netlify](https://www.netlify.com/) is used as a Continuous Integration and Continuous Deployment (CI/CD) tool.
@@ -99,5 +113,7 @@ The endpoints from the [backend](https://github.com/crisouteda/phone-catalogue-s
 ## 📝 Following improvements and TODOS
 
 - Add persistency to token. It should be updated every hour for security reasons.
+
+- Add and improve tests
 
 - UX/UI ensure optimal view in every screen size and improve themes and general design
