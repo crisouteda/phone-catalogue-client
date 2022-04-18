@@ -103,15 +103,14 @@ export const PhoneModal = memo(() => {
             requiredKeys.map(
               (key: string) =>
                 !!phone[key] && (
-                  <>
-                    <Text text={key} bold key={`key-${key}`} />
+                  <React.Fragment key={key}>
+                    <Text text={key} bold />
                     <Text
                       loading={updatePhoneLoading}
                       text={phone[key]}
                       secondary
-                      key={`value-${key}`}
                     />
-                  </>
+                  </React.Fragment>
                 )
             )}
           {isAuth && isEdit && (
