@@ -10,7 +10,6 @@ export const initialObject: IPhone = {
   processor: "",
   description: "",
   color: "",
-  id: "",
 };
 
 export const formHelper: { [key: string]: IForm } = {
