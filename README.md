@@ -110,8 +110,8 @@ The endpoints from the [backend](https://github.com/crisouteda/phone-catalogue-s
 
 ## 📝 Following improvements and TODOS
 
-- Add persistency to token. It should be updated every hour for security reasons.
+- Authentication token should be updated automatically shortly before its expiration date.
 
 - Add and improve tests
 
-- UX/UI ensure optimal view in every screen size and improve themes and general design
+- Improvements in user experience. Ensure optimal view in every screen size and improve themes and general design
