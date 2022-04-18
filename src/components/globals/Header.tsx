@@ -25,10 +25,10 @@ export const Header = memo(() => {
   }, [isLight]);
 
   return (
-    <StyledHeader>
+    <StyledHeader className="header">
       <span className="title">{HEADER_TITLE}</span>
       <div className="button-wrapper">
-        <ToggleButton setState={setIsLight} />
+        <ToggleButton setState={setIsLight} id="toggle-theme" />
         {!isAuth && (
           <PrimaryButton
             text={SIGN_UP_BUTTON}
