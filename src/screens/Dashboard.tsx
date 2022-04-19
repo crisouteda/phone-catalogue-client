@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, memo, lazy, Suspense } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useLocation } from "react-router-dom";
 import { ITEMS_DISPLAYED, CREATE_PHONE_BUTTON } from "../constants";
 import {
   Flex,
@@ -20,32 +19,9 @@ const PhoneModal = lazy(() => import("../components/phoneModal"));
 const PhoneCard = lazy(() => import("../components/phoneCard"));
 
 export default memo(function Dashboard() {
-  const location: any = useLocation();
-  const {
-    handleGetPhones,
-    handleGetPhone,
-    handleClearPhone,
-    handleOpenAuth,
-    handleCloseAuth,
-  } = useContextActions();
+  const { handleGetPhones } = useContextActions();
   const { phones, phonesLimitReached, lastScanned, isAuth } = useContextState();
   const [openCreate, setOpenCreate] = useState(false);
-
-  useEffect(() => {
-    const url = new URLSearchParams(location.search);
-    const id = url.get("id");
-    const register = url.get("register");
-    if (id) {
-      handleGetPhone(id);
-    } else {
-      handleClearPhone();
-    }
-    if (register && JSON.parse(register)) {
-      handleOpenAuth();
-    } else {
-      handleCloseAuth();
-    }
-  }, [location]);
 
   const fetchMoreData = () => {
     handleGetPhones(ITEMS_DISPLAYED, lastScanned);
