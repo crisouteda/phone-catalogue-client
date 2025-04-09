@@ -5,11 +5,11 @@ import { ITEMS_DISPLAYED, CREATE_PHONE_BUTTON } from "../constants";
 import {
   Flex,
   Header,
-  Card,
   Modal,
   LoadingCards,
   RegisterModal,
   PrimaryButton,
+  Card,
 } from "../components";
 import { useContextActions, useContextState } from "../context";
 import { PageLayout } from "./Page.style";
@@ -36,7 +36,7 @@ export default memo(function Dashboard() {
   return (
     <>
       <Header />
-      <PageLayout className="page">
+      <PageLayout className='page'>
         {isAuth && (
           <PrimaryButton
             text={CREATE_PHONE_BUTTON}
@@ -67,12 +67,12 @@ export default memo(function Dashboard() {
           <LoadingCards />
         )}
       </PageLayout>
-      <Suspense fallback={<Modal key="modal" />}>
-        <PhoneModal key="phoneModal" />
+      <Suspense fallback={<Modal key='modal' />}>
+        <PhoneModal key='phoneModal' />
         {openCreate && (
           <CreateModal
             setClose={() => setOpenCreate(false)}
-            key="createModal"
+            key='createModal'
           />
         )}
         <RegisterModal />
