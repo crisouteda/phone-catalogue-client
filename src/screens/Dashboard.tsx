@@ -33,6 +33,8 @@ export default memo(function Dashboard() {
 
   const hasMore = !phonesLimitReached || lastScanned === undefined;
 
+  if (!phones) return null;
+
   return (
     <>
       <Header />
@@ -43,7 +45,7 @@ export default memo(function Dashboard() {
             handleOnClick={() => setOpenCreate(true)}
           />
         )}
-        {phones?.length ? (
+        {phones.length ? (
           <InfiniteScroll
             dataLength={phones.length}
             next={fetchMoreData}
@@ -51,7 +53,7 @@ export default memo(function Dashboard() {
             loader={<LoadingCards />}
           >
             <Flex>
-              {phones?.map((phone, i) => {
+              {phones.map((phone, i) => {
                 return (
                   <Suspense
                     key={`suspense-${phone.id}-${i}`}
